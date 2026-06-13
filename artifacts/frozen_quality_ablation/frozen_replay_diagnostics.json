@@ -1,0 +1,70 @@
+{
+  "status": "legacy_not_strictly_comparable",
+  "strict_replay_claim": false,
+  "passed": null,
+  "numeric_within_tolerance": false,
+  "original_config_fingerprint": "b506179c6db19b3b9ceadc8d9a7dba4f71df52949537a4b1bb6856e6fbd732e9",
+  "replay_config_fingerprint": "d25c5af95e1efeeedec1c051904d4d70512aabd6ac4c0e6473750ac2078ac2f5",
+  "interpretation": "The legacy profile-selection run does not have a fully matching frozen contract and config fingerprint. Metric deltas are diagnostic only; core_champion_replay is the canonical promotion baseline.",
+  "metrics": {
+    "ndcg_at_10": {
+      "original": 0.3254711389373969,
+      "replay": 0.31259866304446476,
+      "delta": -0.012872475892932111,
+      "absolute_delta": 0.012872475892932111,
+      "abs_tolerance": 0.001,
+      "rel_tolerance": 0.001,
+      "within_numeric_tolerance": false
+    },
+    "mrr_at_10": {
+      "original": 0.5529020362353696,
+      "replay": 0.5094556677890011,
+      "delta": -0.04344636844636851,
+      "absolute_delta": 0.04344636844636851,
+      "abs_tolerance": 0.001,
+      "rel_tolerance": 0.001,
+      "within_numeric_tolerance": false
+    },
+    "recall_efficiency_at_10": {
+      "original": 0.2687349687349687,
+      "replay": 0.26738816738816734,
+      "delta": -0.001346801346801374,
+      "absolute_delta": 0.001346801346801374,
+      "abs_tolerance": 0.001,
+      "rel_tolerance": 0.001,
+      "within_numeric_tolerance": false
+    }
+  },
+  "selected_legacy_core_profile": "compact",
+  "legacy_core_run": "core_compact",
+  "canonical_baseline_run": "core_champion_replay",
+  "canonical_contract_validated": true,
+  "legacy_manifest_equal": true,
+  "legacy_split_equal": true,
+  "strict_contract_runs": [
+    "core_champion_replay",
+    "tag_genome_feature_only",
+    "imdb_feature_only",
+    "combined_feature_only"
+  ],
+  "legacy_contract_diagnostics": {
+    "core_conservative": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": false,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    },
+    "core_balanced": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": true,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    },
+    "core_compact": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": true,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "data_source": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\ml-10m",
+  "dense_backend": "sentence-transformers:cuda",
+  "vector_index_backend": "sklearn-nearest-neighbors-fallback",
+  "ranker_backend": "lightgbm-lambdarank-gpu",
+  "calibration_method": "isotonic",
+  "evaluation_truth": "label",
+  "metrics": {
+    "ndcg_at_10": 0.1659006659145932,
+    "mrr_at_10": 0.38800264550264546,
+    "recall_at_10": 0.06279362563625489,
+    "recall_efficiency_at_10": 0.13738095238095235,
+    "precision_at_10": 0.12166666666666665,
+    "hit_rate_at_10": 0.5833333333333334,
+    "ece": 0.0037304438594005095,
+    "brier": 0.012976947984256968,
+    "p95_latency_ms": 143.1081099981384,
+    "long_tail_recall_at_10": 0.060541310541310546,
+    "cold_start_recall_at_10": 0.0,
+    "long_tail_recall_efficiency_at_10": 0.060541310541310546,
+    "cold_start_recall_efficiency_at_10": 0.0,
+    "long_tail_hit_rate_at_10": 0.1282051282051282,
+    "cold_start_hit_rate_at_10": 0.0,
+    "similar_to_self_return_at_10": 0.0,
+    "ranker_ndcg_lift_vs_hybrid": 0.11606944406956474,
+    "ranker_backend": "lightgbm-lambdarank-gpu",
+    "dense_backend": "sentence-transformers:cuda",
+    "vector_index_backend": "sklearn-nearest-neighbors-fallback"
+  },
+  "observed_metrics": {
+    "ndcg_at_10": 0.1659006659145932,
+    "mrr_at_10": 0.38800264550264546,
+    "recall_at_10": 0.06279362563625489,
+    "recall_efficiency_at_10": 0.13738095238095235,
+    "precision_at_10": 0.12166666666666665,
+    "hit_rate_at_10": 0.5833333333333334,
+    "ece": 0.0037304438594005095,
+    "brier": 0.012976947984256968
+  },
+  "data_diagnostics": {
+    "catalog_size": 10681,
+    "interaction_count": 10000054,
+    "rating_mean": 3.512421932921562,
+    "rating_std": 1.0604184716263543,
+    "item_popularity_gini": 0.8053217346068893,
+    "tag_coverage": 0.8480479355865556,
+    "catalog_cold_start_fraction": 0.05617451549480386,
+    "preference_rating_correlation": null,
+    "label_disagreement_rate": 0.004125,
+    "evaluation_truth": "label",
+    "split_anchor_leakage_free": true,
+    "split_personalized_user_leakage_free": true,
+    "enrichment": {
+      "tag_genome_applied": true,
+      "imdb_applied": true,
+      "tag_genome_coverage": 0.7159441999812751,
+      "tag_genome_path": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\tag_genome_enrichment.csv",
+      "imdb_coverage": 0.5740099241644041,
+      "imdb_path": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\imdb_enrichment.csv"
+    }
+  },
+  "variant_ndcg_at_10": {
+    "bm25_score": 0.05042322858859317,
+    "dense_score": 0.027994865268278303,
+    "hybrid_score": 0.049831221845028466,
+    "ranker_score": 0.1659006659145932
+  },
+  "ranker_ndcg_lift_vs_hybrid": 0.11606944406956474,
+  "query_type_metrics": {
+    "genre_tag": {
+      "ndcg_at_10": 0.23706913873385843,
+      "mrr_at_10": 0.6,
+      "recall_at_10": 0.0528448275862069,
+      "recall_efficiency_at_10": 0.12428571428571429,
+      "precision_at_10": 0.12,
+      "hit_rate_at_10": 0.6,
+      "num_queries": 10,
+      "claim_support": "SUFFICIENT"
+    },
+    "mood_decade": {
+      "ndcg_at_10": 0.052776256554517134,
+      "mrr_at_10": 0.10722789115646258,
+      "recall_at_10": 0.023911038367560106,
+      "recall_efficiency_at_10": 0.0642857142857143,
+      "precision_at_10": 0.0642857142857143,
+      "hit_rate_at_10": 0.5,
+      "num_queries": 14,
+      "claim_support": "SUFFICIENT"
+    },
+    "personalized": {
+      "ndcg_at_10": 0.09850407989961729,
+      "mrr_at_10": 0.23425925925925928,
+      "recall_at_10": 0.03146744305280891,
+      "recall_efficiency_at_10": 0.10833333333333334,
+      "precision_at_10": 0.10833333333333334,
+      "hit_rate_at_10": 0.4166666666666667,
+      "num_queries": 12,
+      "claim_support": "SUFFICIENT"
+    },
+    "similar_to": {
+      "ndcg_at_10": 0.10980901867213123,
+      "mrr_at_10": 0.28898809523809527,
+      "recall_at_10": 0.026597575546921753,
+      "recall_efficiency_at_10": 0.08333333333333333,
+      "precision_at_10": 0.08333333333333333,
+      "hit_rate_at_10": 0.5833333333333334,
+      "num_queries": 12,
+      "claim_support": "SUFFICIENT"
+    },
+    "visual_query": {
+      "ndcg_at_10": 0.36206031607606537,
+      "mrr_at_10": 0.7916666666666666,
+      "recall_at_10": 0.18396954183088457,
+      "recall_efficiency_at_10": 0.31666666666666665,
+      "precision_at_10": 0.24166666666666667,
+      "hit_rate_at_10": 0.8333333333333334,
+      "num_queries": 12,
+      "claim_support": "SUFFICIENT"
+    }
+  },
+  "diagnostic_metrics": {
+    "visual_query_hybrid_ndcg_all": 0.12181785469126974,
+    "visual_query_count_all": 60
+  },
+  "enrichment_diagnostics": {
+    "tag_genome_applied": true,
+    "imdb_applied": true,
+    "tag_genome_coverage": 0.7159441999812751,
+    "tag_genome_path": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\tag_genome_enrichment.csv",
+    "imdb_coverage": 0.5740099241644041,
+    "imdb_path": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\imdb_enrichment.csv"
+  },
+  "similar_to_self_return_at_10": 0.0,
+  "split_diagnostics": {
+    "anchor_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "personalized_user_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "query_type_counts": {
+      "train": {
+        "genre_tag": 41,
+        "mood_decade": 37,
+        "personalized": 38,
+        "similar_to": 39,
+        "visual_query": 38
+      },
+      "val": {
+        "genre_tag": 9,
+        "mood_decade": 9,
+        "personalized": 10,
+        "similar_to": 9,
+        "visual_query": 10
+      },
+      "test": {
+        "genre_tag": 10,
+        "mood_decade": 14,
+        "personalized": 12,
+        "similar_to": 12,
+        "visual_query": 12
+      }
+    },
+    "anchor_leakage_free": true,
+    "personalized_user_leakage_free": true,
+    "strategy": "group-aware-best-of-random-candidates",
+    "split_sizes": {
+      "train": 193,
+      "val": 47,
+      "test": 60
+    }
+  },
+  "launch_decision": "ITERATE",
+  "reports_dir": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\reports",
+  "artifacts_dir": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\artifacts"
+}

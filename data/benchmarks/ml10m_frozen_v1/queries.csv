@@ -1,0 +1,501 @@
+query_id,query,query_type,anchor_movie_id,user_id,target_genre,target_tag,target_mood_tag,target_decade
+0,crime movie with space,genre_tag,5660,5,crime,space,funny,1960
+1,movie like Sleepy Hollow,similar_to,3081,26,fantasy,slick tale,funny,1990
+2,recommend documentary movies for a user who likes crime,personalized,5811,102,documentary,detective,psychological,2000
+3,thoughtful movie from the 1970s,mood_decade,1292,108,drama,breakthroughs,psychological,1970
+4,movie with scenes of robot,visual_query,7412,61,horror,robot,emotional,1970
+5,adventure movie with detective,genre_tag,1582,223,adventure,detective,mystery,1990
+6,movie like My Demon Lover,similar_to,4138,203,horror,romance,emotional,1980
+7,recommend crime movies for a user who likes action,personalized,1447,62,crime,robot,emotional,1990
+8,family-friendly movie from the 1990s,mood_decade,397,13,horror,family,family,1990
+9,movie with scenes of space,visual_query,8038,74,drama,space,dark,1920
+10,drama movie with on dvr,genre_tag,800,118,drama,on dvr,emotional,1990
+11,movie like T-Men,similar_to,1154,64,film-noir,romance,psychological,1940
+12,recommend comedy movies for a user who likes action,personalized,6529,12,comedy,detective,psychological,1960
+13,family-friendly movie from the 1970s,mood_decade,2533,103,sci-fi,family,family,1970
+14,movie with scenes of buddhist,visual_query,8014,194,drama,buddhist,mystery,2000
+15,drama movie with detective,genre_tag,1815,228,drama,detective,funny,1990
+16,"movie like Rocking Horse Winner, The",similar_to,5659,116,horror,detective,classic,1950
+17,recommend drama movies for a user who likes comedy,personalized,506,193,drama,virginia woolf,funny,1990
+18,fast-paced movie from the 1980s,mood_decade,7242,37,action,detective,heist,1980
+19,movie with scenes of romance,visual_query,6903,159,drama,romance,psychological,1970
+20,comedy movie with family,genre_tag,3526,190,comedy,family,family,1980
+21,movie like Steam: The Turkish Bath (Hamam),similar_to,2388,191,drama,space,heist,1990
+22,recommend drama movies for a user who likes comedy,personalized,1879,93,drama,gay,dark,1990
+23,dark movie from the 1990s,mood_decade,1644,175,thriller,romance,dark,1990
+24,movie with scenes of robot,visual_query,4461,8,imax,robot,emotional,1990
+25,romance movie with space,genre_tag,45412,56,romance,space,psychological,2000
+26,movie like Bride of Chucky,similar_to,2315,87,horror,family,family,1990
+27,recommend comedy movies for a user who likes comedy,personalized,1439,230,comedy,robot,classic,1990
+28,classic movie from the 1940s,mood_decade,8752,105,drama,space,classic,1940
+29,movie with scenes of detective,visual_query,6375,140,documentary,detective,family,2000
+30,sci-fi movie with detective,genre_tag,3401,225,sci-fi,detective,psychological,1980
+31,movie like Romance,similar_to,2894,151,drama,nudity full frontal notable,heist,1990
+32,recommend drama movies for a user who likes action,personalized,450,75,drama,detective,emotional,1990
+33,dark movie from the 1940s,mood_decade,25878,193,adventure,space,dark,1940
+34,movie with scenes of romance,visual_query,7923,22,drama,romance,dark,1970
+35,comedy movie with detective,genre_tag,26629,129,comedy,detective,dark,1980
+36,movie like Stranger Than Paradise,similar_to,3925,156,comedy,robot,dark,1980
+37,recommend horror movies for a user who likes action,personalized,4051,126,horror,unintentional comedy,mystery,1960
+38,dark movie from the 1950s,mood_decade,1065,197,mystery,romance,dark,1950
+39,movie with scenes of space,visual_query,31156,150,sci-fi,space,mystery,1950
+40,comedy movie with romance,genre_tag,5326,119,comedy,romance,psychological,2000
+41,movie like Faithless (TrolÃ¶sa),similar_to,4072,75,drama,romance,emotional,2000
+42,recommend fantasy movies for a user who likes crime,personalized,2263,145,fantasy,space,emotional,1980
+43,fast-paced movie from the 1980s,mood_decade,4505,28,drama,detective,heist,1980
+44,movie with scenes of family,visual_query,7251,157,drama,family,family,1990
+45,drama movie with family,genre_tag,5950,178,drama,family,family,2000
+46,"movie like I, the Worst of All (Yo, la peor de todas)",similar_to,789,154,drama,biopics,family,1990
+47,recommend comedy movies for a user who likes comedy,personalized,216,202,comedy,funniest movies,mystery,1990
+48,family-friendly movie from the 1930s,mood_decade,7092,54,drama,family,family,1930
+49,movie with scenes of family,visual_query,164,66,crime,family,family,1990
+50,drama movie with eh,genre_tag,3755,27,drama,eh,classic,2000
+51,movie like Henry V,similar_to,1224,232,drama,historical,funny,1980
+52,recommend horror movies for a user who likes comedy,personalized,6872,61,horror,campy,family,2000
+53,suspenseful movie from the 1990s,mood_decade,1593,231,comedy,bibliothek,mystery,1990
+54,movie with scenes of space,visual_query,5783,205,documentary,space,psychological,2000
+55,comedy movie with robot,genre_tag,26336,112,comedy,robot,mystery,1970
+56,"movie like Hairdresser's Husband, The (Mari de la coiffeuse, Le)",similar_to,8270,222,romance,romance,dark,1990
+57,recommend horror movies for a user who likes comedy,personalized,3696,207,horror,romance,classic,1980
+58,emotional movie from the 1950s,mood_decade,5149,113,western,ronald reagan,emotional,1950
+59,movie with scenes of robot,visual_query,2734,22,drama,robot,funny,1980
+60,comedy movie with jerry lewis,genre_tag,8986,138,comedy,jerry lewis,dark,1960
+61,movie like Fun with Dick and Jane,similar_to,42011,142,crime,desperate,family,2000
+62,recommend comedy movies for a user who likes crime,personalized,939,213,comedy,romance,emotional,1950
+63,family-friendly movie from the 1990s,mood_decade,845,167,drama,detective,family,1990
+64,movie with scenes of family,visual_query,5910,251,drama,family,family,1980
+65,romance movie with detective,genre_tag,2801,183,romance,detective,dark,1990
+66,movie like Diva,similar_to,1264,79,thriller,opera,psychological,1980
+67,recommend animation movies for a user who likes adventure,personalized,2700,129,animation,want to buy,funny,1990
+68,family-friendly movie from the 1990s,mood_decade,1543,169,drama,romance,family,1990
+69,movie with scenes of family,visual_query,4618,59,thriller,family,family,1980
+70,drama movie with romance,genre_tag,702,76,drama,romance,funny,1960
+71,movie like My Boss's Daughter,similar_to,6687,48,comedy,detective,mystery,2000
+72,recommend comedy movies for a user who likes comedy,personalized,6415,77,comedy,detective,dark,1980
+73,dark movie from the 1990s,mood_decade,3410,248,comedy,space,dark,1990
+74,movie with scenes of romance,visual_query,3710,27,comedy,romance,classic,1980
+75,drama movie with italian history,genre_tag,26359,118,drama,italian history,funny,1970
+76,movie like Exorcist II: The Heretic,similar_to,1998,5,horror,family,family,1970
+77,recommend comedy movies for a user who likes action,personalized,8648,74,comedy,family,family,1990
+78,classic movie from the 1960s,mood_decade,8816,141,action,romance,classic,1960
+79,movie with scenes of detective,visual_query,7240,81,war,detective,emotional,1980
+80,drama movie with detective,genre_tag,1119,236,drama,detective,heist,1990
+81,movie like Heavy Metal,similar_to,610,235,sci-fi,detective,psychological,1980
+82,recommend comedy movies for a user who likes comedy,personalized,1910,82,comedy,robot,emotional,1990
+83,funny movie from the 1990s,mood_decade,1265,3,romance,seen more than once,funny,1990
+84,movie with scenes of romance,visual_query,706,232,drama,romance,mystery,1990
+85,comedy movie with detective,genre_tag,410,218,comedy,detective,family,1990
+86,movie like Ruby in Paradise,similar_to,523,264,drama,ashley judd,dark,1990
+87,recommend comedy movies for a user who likes comedy,personalized,5513,50,comedy,robot,funny,2000
+88,emotional movie from the 1990s,mood_decade,3146,157,comedy,space,emotional,1990
+89,movie with scenes of family,visual_query,38701,40,western,family,family,2000
+90,fantasy movie with tim allen,genre_tag,44399,154,fantasy,tim allen,emotional,2000
+91,movie like Underclassman,similar_to,30896,159,comedy,detective,psychological,2000
+92,recommend romance movies for a user who likes action,personalized,33688,226,romance,space,heist,2000
+93,family-friendly movie from the 1990s,mood_decade,26841,5,comedy,family,family,1990
+94,movie with scenes of space,visual_query,4667,27,drama,space,emotional,1980
+95,drama movie with oscar best supporting actress,genre_tag,4805,28,drama,oscar best supporting actress,heist,1950
+96,movie like First Daughter,similar_to,8869,132,romance,pg,funny,2000
+97,recommend adventure movies for a user who likes comedy,personalized,6564,209,adventure,boring,family,2000
+98,classic movie from the 1980s,mood_decade,2151,158,comedy,detective,classic,1980
+99,movie with scenes of not seen,visual_query,7445,219,action,not seen,heist,2000
+100,documentary movie with family,genre_tag,6784,128,documentary,family,family,1970
+101,"movie like Dresser, The",similar_to,8379,249,drama,family,family,1980
+102,recommend sci-fi movies for a user who likes action,personalized,46530,67,sci-fi,pg 13,family,2000
+103,fast-paced movie from the 1990s,mood_decade,865,98,drama,robot,heist,1990
+104,movie with scenes of american football,visual_query,8937,13,action,american football,family,2000
+105,drama movie with family,genre_tag,7295,188,drama,family,family,2000
+106,"movie like Tale of Two Sisters, A (Janghwa, Hongryeon)",similar_to,7982,120,mystery,family,family,2000
+107,recommend comedy movies for a user who likes crime,personalized,27555,142,comedy,detective,classic,2000
+108,classic movie from the 1980s,mood_decade,3961,107,horror,detective,classic,1980
+109,movie with scenes of delights,visual_query,334,179,drama,delights,dark,1990
+110,comedy movie with detective,genre_tag,3313,113,comedy,detective,emotional,1980
+111,movie like Saving Silverman,similar_to,4149,113,comedy,jack black,funny,2000
+112,recommend romance movies for a user who likes comedy,personalized,49666,77,romance,robert downey jr,emotional,2000
+113,dark movie from the 1990s,mood_decade,26743,142,animation,studio ghibli,dark,1990
+114,movie with scenes of space,visual_query,2811,168,comedy,space,funny,1990
+115,drama movie with robot,genre_tag,33288,255,drama,robot,mystery,1960
+116,movie like Target,similar_to,139,192,action,space,mystery,1990
+117,recommend drama movies for a user who likes comedy,personalized,3342,230,drama,alan parker,emotional,1980
+118,funny movie from the 2000s,mood_decade,6648,70,romance,romance,funny,2000
+119,movie with scenes of detective,visual_query,6020,206,drama,detective,psychological,1930
+120,drama movie with detective,genre_tag,59,83,drama,detective,family,1990
+121,movie like Fire and Ice,similar_to,5041,220,animation,family,family,1980
+122,recommend drama movies for a user who likes action,personalized,1218,45,drama,heroic bloodshed,emotional,1980
+123,classic movie from the 2000s,mood_decade,5445,112,mystery,dystopia,classic,2000
+124,movie with scenes of historical grit,visual_query,1120,247,comedy,historical grit,family,1990
+125,comedy movie with coen bros,genre_tag,5602,82,comedy,coen bros,dark,1950
+126,movie like Dawn of the Dead,similar_to,7387,230,horror,zombies,heist,1970
+127,recommend film-noir movies for a user who likes adventure,personalized,39369,114,film-noir,romance,mystery,1950
+128,fast-paced movie from the 1980s,mood_decade,5209,157,adventure,romance,heist,1980
+129,movie with scenes of space,visual_query,32349,144,drama,space,family,1930
+130,drama movie with roses,genre_tag,1936,175,drama,roses,mystery,1940
+131,movie like Smoking/No Smoking,similar_to,3530,128,comedy,family,family,1990
+132,recommend drama movies for a user who likes comedy,personalized,3514,252,drama,robot,emotional,2000
+133,thoughtful movie from the 1990s,mood_decade,1511,41,romance,space,psychological,1990
+134,movie with scenes of romance,visual_query,1888,121,romance,romance,heist,1990
+135,comedy movie with family,genre_tag,50806,200,comedy,family,family,2000
+136,"movie like Happiest Millionaire, The",similar_to,2049,259,comedy,space,mystery,1960
+137,recommend drama movies for a user who likes action,personalized,27020,250,drama,models,classic,1990
+138,suspenseful movie from the 2000s,mood_decade,4056,132,mystery,obsession,mystery,2000
+139,movie with scenes of detective,visual_query,5547,174,drama,detective,funny,1990
+140,horror movie with robot,genre_tag,5413,137,horror,robot,funny,1980
+141,"movie like Midsummer Night's Dream, A",similar_to,7057,205,comedy,oscar best cinematography,emotional,1930
+142,recommend romance movies for a user who likes crime,personalized,8874,225,romance,divx,emotional,2000
+143,emotional movie from the 1980s,mood_decade,4830,72,drama,detective,emotional,1980
+144,movie with scenes of space,visual_query,5710,30,comedy,space,psychological,1980
+145,animation movie with space,genre_tag,3775,114,animation,space,emotional,1940
+146,movie like Harry Potter and the Sorcerer's Stone (a.k.a. Harry Potter and the Philosopher's Stone),similar_to,4896,262,fantasy,fiona shaw,dark,2000
+147,recommend thriller movies for a user who likes action,personalized,3484,135,thriller,teen induced angst overdose,funny,2000
+148,suspenseful movie from the 1960s,mood_decade,32853,195,documentary,space,mystery,1960
+149,movie with scenes of ballet,visual_query,4054,104,drama,ballet,dark,2000
+150,comedy movie with dumb but funny,genre_tag,6482,234,comedy,dumb but funny,mystery,2000
+151,"movie like Vanishing, The",similar_to,4808,12,thriller,remake,emotional,1990
+152,recommend drama movies for a user who likes comedy,personalized,2190,55,drama,robot,psychological,1990
+153,family-friendly movie from the 1960s,mood_decade,8775,111,war,family,family,1960
+154,movie with scenes of pointless,visual_query,8815,74,horror,pointless,funny,2000
+155,fantasy movie with jeremy irons,genre_tag,49649,231,fantasy,jeremy irons,dark,2000
+156,movie like Hear My Song,similar_to,1180,190,comedy,irsh,emotional,1990
+157,recommend documentary movies for a user who likes action,personalized,6869,253,documentary,space,emotional,2000
+158,classic movie from the 1990s,mood_decade,1190,204,drama,almodãâ3var,classic,1990
+159,movie with scenes of detective,visual_query,1764,26,thriller,detective,mystery,1990
+160,drama movie with family,genre_tag,4371,188,drama,family,family,2000
+161,movie like Incident at Oglala,similar_to,6676,66,documentary,family,family,1990
+162,recommend romance movies for a user who likes action,personalized,1946,118,romance,oscar best directing,dark,1950
+163,classic movie from the 1990s,mood_decade,1903,106,comedy,romance,classic,1990
+164,movie with scenes of detective,visual_query,5119,90,drama,detective,emotional,1960
+165,drama movie with space,genre_tag,6887,59,drama,space,family,2000
+166,"movie like Dark Half, The",similar_to,2898,78,horror,romance,classic,1990
+167,recommend western movies for a user who likes comedy,personalized,26101,214,western,family,family,1960
+168,dark movie from the 1970s,mood_decade,47330,67,drama,robot,dark,1970
+169,movie with scenes of family,visual_query,5761,5,western,family,family,1980
+170,horror movie with classic monster,genre_tag,1334,235,horror,classic monster,family,1950
+171,movie like Bad Dreams,similar_to,4472,219,thriller,robot,psychological,1980
+172,recommend drama movies for a user who likes action,personalized,1273,144,drama,feel good,funny,1980
+173,family-friendly movie from the 2000s,mood_decade,4209,1,drama,family,family,2000
+174,movie with scenes of detective,visual_query,53972,247,action,detective,heist,2000
+175,drama movie with robot,genre_tag,8491,211,drama,robot,funny,1940
+176,movie like Little Odessa,similar_to,268,28,drama,robot,psychological,1990
+177,recommend adventure movies for a user who likes action,personalized,8534,100,adventure,romance,mystery,2000
+178,family-friendly movie from the 1980s,mood_decade,8804,14,drama,family,family,1980
+179,movie with scenes of space,visual_query,5548,29,comedy,space,emotional,1980
+180,drama movie with oscar best actor,genre_tag,1955,166,drama,oscar best actor,classic,1970
+181,movie like Pathfinder,similar_to,52460,126,thriller,robot,funny,2000
+182,recommend horror movies for a user who likes action,personalized,4839,249,horror,robot,funny,1980
+183,fast-paced movie from the 1980s,mood_decade,2381,142,comedy,romance,heist,1980
+184,movie with scenes of romance,visual_query,8946,180,comedy,romance,classic,2000
+185,comedy movie with robot,genre_tag,2545,6,comedy,robot,emotional,1990
+186,"movie like I, the Jury",similar_to,6086,236,thriller,romance,family,1980
+187,recommend drama movies for a user who likes comedy,personalized,8252,68,drama,detective,dark,1960
+188,family-friendly movie from the 1980s,mood_decade,6906,50,drama,romance,family,1980
+189,movie with scenes of soviet,visual_query,3742,219,drama,soviet,emotional,1920
+190,action movie with detective,genre_tag,3431,79,action,detective,family,1980
+191,movie like Fearless (Huo Yuan Jia),similar_to,46322,164,action,martial arts,emotional,2000
+192,recommend drama movies for a user who likes comedy,personalized,503,42,drama,family,family,1990
+193,family-friendly movie from the 2000s,mood_decade,33819,89,drama,family,family,2000
+194,movie with scenes of jonathan frakes,visual_query,1356,139,action,jonathan frakes,funny,1990
+195,comedy movie with detective,genre_tag,44844,156,comedy,detective,heist,2000
+196,movie like Look Both Ways,similar_to,41721,121,drama,australian,psychological,2000
+197,recommend romance movies for a user who likes adventure,personalized,5707,65,romance,family,family,1980
+198,dark movie from the 2000s,mood_decade,8957,175,crime,surprise ending,dark,2000
+199,movie with scenes of tragically bad,visual_query,32019,252,musical,tragically bad,emotional,2000
+200,drama movie with detective,genre_tag,1040,104,drama,detective,emotional,1990
+201,movie like Gumby: The Movie,similar_to,244,143,animation,space,emotional,1990
+202,recommend drama movies for a user who likes action,personalized,5928,135,drama,robot,funny,1980
+203,classic movie from the 1990s,mood_decade,5822,194,action,detective,classic,1990
+204,movie with scenes of telecine,visual_query,7360,201,horror,telecine,psychological,2000
+205,comedy movie with space,genre_tag,2508,176,comedy,space,funny,1990
+206,"movie like Indian in the Cupboard, The",similar_to,60,237,children s,family,family,1990
+207,recommend comedy movies for a user who likes comedy,personalized,492,185,comedy,robot,emotional,1990
+208,suspenseful movie from the 2000s,mood_decade,8948,234,romance,disappointing,mystery,2000
+209,movie with scenes of space,visual_query,6526,119,drama,space,heist,1990
+210,fantasy movie with adventure,genre_tag,41569,182,fantasy,adventure,family,2000
+211,"movie like Legend of the Lone Ranger, The",similar_to,5761,132,western,space,family,1980
+212,recommend action movies for a user who likes comedy,personalized,1910,82,action,robot,mystery,1990
+213,classic movie from the 1940s,mood_decade,2398,257,comedy,santa claus,classic,1940
+214,movie with scenes of best of 2005,visual_query,33794,3,crime,best of 2005,dark,2000
+215,romance movie with family,genre_tag,4836,183,romance,family,family,1980
+216,movie like Teacher's Pet,similar_to,7174,209,children s,disturbing in a bad way,emotional,2000
+217,recommend thriller movies for a user who likes comedy,personalized,4932,174,thriller,a classic,family,1980
+218,funny movie from the 2000s,mood_decade,31687,197,animation,disney,funny,2000
+219,movie with scenes of space,visual_query,8486,255,romance,space,emotional,1930
+220,comedy movie with saturday night live,genre_tag,3955,5,comedy,saturday night live,family,2000
+221,movie like In Praise of Older Women,similar_to,26404,81,comedy,family,family,1970
+222,recommend drama movies for a user who likes crime,personalized,33821,186,drama,oil,family,2000
+223,suspenseful movie from the 2000s,mood_decade,27838,64,thriller,romance,mystery,2000
+224,movie with scenes of space,visual_query,1516,256,comedy,space,funny,1990
+225,drama movie with family,genre_tag,5579,148,drama,family,family,2000
+226,movie like Circle of Friends,similar_to,222,239,drama,high school,heist,1990
+227,recommend drama movies for a user who likes action,personalized,8394,226,drama,space,classic,1990
+228,suspenseful movie from the 1970s,mood_decade,26242,18,mystery,bibliothek,mystery,1970
+229,movie with scenes of sam peckinpah,visual_query,7897,119,western,sam peckinpah,heist,1970
+230,musical movie with space,genre_tag,6347,57,musical,space,family,1980
+231,movie like Death Race 2000,similar_to,7991,180,action,scifi cult,psychological,1970
+232,recommend drama movies for a user who likes action,personalized,5407,18,drama,robot,psychological,1990
+233,funny movie from the 1990s,mood_decade,1715,200,thriller,space,funny,1990
+234,movie with scenes of own it,visual_query,3317,195,comedy,own it,classic,2000
+235,drama movie with detective,genre_tag,31362,112,drama,detective,heist,2000
+236,movie like Copying Beethoven,similar_to,52356,94,drama,space,mystery,2000
+237,recommend drama movies for a user who likes action,personalized,3224,223,drama,foreign,classic,1960
+238,thoughtful movie from the 1980s,mood_decade,8933,82,drama,detective,psychological,1980
+239,movie with scenes of detective,visual_query,5935,117,drama,detective,psychological,1980
+240,musical movie with family,genre_tag,7049,24,musical,family,family,1930
+241,movie like Avalanche,similar_to,2534,134,action,family,family,1970
+242,recommend drama movies for a user who likes action,personalized,591,6,drama,robot,heist,1990
+243,suspenseful movie from the 1980s,mood_decade,3698,65,action,campy,mystery,1980
+244,movie with scenes of stand up,visual_query,8827,29,comedy,stand up,family,1980
+245,comedy movie with michael caine,genre_tag,34063,159,comedy,michael caine,mystery,1960
+246,movie like Ivanhoe,similar_to,8503,145,adventure,robot,emotional,1950
+247,recommend drama movies for a user who likes adventure,personalized,3903,91,drama,family,family,2000
+248,thoughtful movie from the 1990s,mood_decade,26996,95,thriller,robot,psychological,1990
+249,movie with scenes of oscar best actor,visual_query,1283,51,western,oscar best actor,emotional,1950
+250,drama movie with family,genre_tag,26228,114,drama,family,family,1970
+251,"movie like Guru, The",similar_to,6060,226,comedy,immigrants,dark,2000
+252,recommend adventure movies for a user who likes comedy,personalized,6537,85,adventure,action,psychological,2000
+253,dark movie from the 1950s,mood_decade,7822,165,romance,romance,dark,1950
+254,movie with scenes of space,visual_query,403,106,drama,space,mystery,1990
+255,fantasy movie with on computer,genre_tag,26606,190,fantasy,on computer,family,1980
+256,movie like What Have I Done to Deserve This? (Â¿QuÃ© he hecho yo para merecer esto!!),similar_to,26527,47,comedy,robot,psychological,1980
+257,recommend thriller movies for a user who likes comedy,personalized,494,53,thriller,harrison ford,emotional,1990
+258,suspenseful movie from the 2000s,mood_decade,8506,131,thriller,robot,mystery,2000
+259,movie with scenes of disney,visual_query,3287,52,animation,disney,dark,2000
+260,children s movie with socially relevant,genre_tag,3969,101,children s,socially relevant,funny,2000
+261,movie like Moonlight Murder,similar_to,977,249,mystery,robot,dark,1930
+262,recommend war movies for a user who likes action,personalized,1222,243,war,war,classic,1980
+263,thoughtful movie from the 1920s,mood_decade,2225,154,drama,romance,psychological,1920
+264,movie with scenes of space,visual_query,3397,169,comedy,space,psychological,1980
+265,comedy movie with family,genre_tag,42740,130,comedy,family,family,2000
+266,movie like Inside Man,similar_to,44199,118,crime,dani2006,heist,2000
+267,recommend comedy movies for a user who likes comedy,personalized,1236,195,comedy,hal hartly,emotional,1990
+268,funny movie from the 1990s,mood_decade,851,86,drama,space,funny,1990
+269,movie with scenes of romance,visual_query,2159,241,thriller,romance,family,1980
+270,drama movie with bank robbery,genre_tag,42,88,drama,bank robbery,emotional,1990
+271,movie like Carandiru,similar_to,7459,155,crime,gefaengnisfilm,emotional,2000
+272,recommend war movies for a user who likes action,personalized,5288,47,war,unintentional comedy,funny,1980
+273,family-friendly movie from the 2000s,mood_decade,54272,156,comedy,pg 13,family,2000
+274,movie with scenes of space,visual_query,27544,81,comedy,space,dark,2000
+275,drama movie with detective,genre_tag,5646,71,drama,detective,family,1980
+276,movie like Messenger of Death,similar_to,6175,226,thriller,robot,classic,1980
+277,recommend film-noir movies for a user who likes action,personalized,8236,260,film-noir,family,family,1950
+278,thoughtful movie from the 1950s,mood_decade,8187,214,musical,robot,psychological,1950
+279,movie with scenes of family,visual_query,31909,150,horror,family,family,1990
+280,thriller movie with family,genre_tag,4803,7,thriller,family,family,1970
+281,movie like Criss Cross,similar_to,8768,81,crime,space,family,1940
+282,recommend comedy movies for a user who likes action,personalized,7261,101,comedy,robot,family,2000
+283,classic movie from the 1990s,mood_decade,865,65,drama,detective,classic,1990
+284,movie with scenes of family,visual_query,45412,43,action,family,family,2000
+285,crime movie with robot,genre_tag,53466,72,crime,robot,emotional,2000
+286,movie like Sordid Lives,similar_to,4303,140,comedy,family,family,2000
+287,recommend action movies for a user who likes adventure,personalized,6723,83,action,robot,funny,1990
+288,family-friendly movie from the 2000s,mood_decade,4389,222,drama,space,family,2000
+289,movie with scenes of space,visual_query,6805,190,action,space,mystery,1990
+290,comedy movie with romance,genre_tag,4483,180,comedy,romance,dark,1980
+291,"movie like Odessa File, The",similar_to,3230,104,thriller,family,family,1970
+292,recommend comedy movies for a user who likes action,personalized,6619,165,comedy,smart kid dumb adult,family,2000
+293,funny movie from the 1990s,mood_decade,809,242,action,space,funny,1990
+294,movie with scenes of rick moranis,visual_query,2053,138,sci-fi,rick moranis,psychological,1990
+295,adventure movie with space,genre_tag,49817,153,adventure,space,funny,1980
+296,movie like Handle with Care (a.k.a. Citizen's Band),similar_to,2923,159,comedy,space,funny,1970
+297,recommend western movies for a user who likes action,personalized,4791,239,western,family,family,1970
+298,dark movie from the 2000s,mood_decade,5416,47,thriller,robot,dark,2000
+299,movie with scenes of robert downey jr,visual_query,48856,111,crime,robert downey jr,family,2000
+300,action movie with rame euy,genre_tag,163,11,action,rame euy,family,1990
+301,"movie like Spitfire Grill, The",similar_to,848,178,drama,family,family,1990
+302,recommend drama movies for a user who likes comedy,personalized,7782,53,drama,rifles,family,1990
+303,dark movie from the 1990s,mood_decade,25,12,romance,elisabeth emotion,dark,1990
+304,movie with scenes of family,visual_query,5838,18,drama,family,family,1990
+305,comedy movie with robot,genre_tag,3836,35,comedy,robot,mystery,1970
+306,"movie like Shining, The",similar_to,1258,124,horror,stanley kubrick,classic,1980
+307,recommend action movies for a user who likes comedy,personalized,8117,178,action,robot,classic,1990
+308,family-friendly movie from the 2000s,mood_decade,4242,232,crime,family,family,2000
+309,movie with scenes of space,visual_query,2911,118,drama,space,psychological,1990
+310,drama movie with romance,genre_tag,7083,254,drama,romance,funny,1980
+311,movie like Sherlock Holmes and the Secret Weapon,similar_to,8773,127,crime,romance,dark,1940
+312,recommend drama movies for a user who likes comedy,personalized,7068,201,drama,just didn t get it,funny,1960
+313,funny movie from the 1970s,mood_decade,5036,33,comedy,oscar best supporting actress,funny,1970
+314,movie with scenes of extreme violence is good for growing youth,visual_query,6874,196,thriller,extreme violence is good for growing youth,heist,2000
+315,sci-fi movie with romance,genre_tag,8122,119,sci-fi,romance,heist,1980
+316,movie like Boogie Nights,similar_to,1673,28,drama,full frontal nudity,mystery,1990
+317,recommend comedy movies for a user who likes action,personalized,4081,239,comedy,family,family,1980
+318,thoughtful movie from the 1980s,mood_decade,7040,177,crime,detective,psychological,1980
+319,movie with scenes of robot,visual_query,987,10,drama,robot,funny,1990
+320,romance movie with afternoon section,genre_tag,140,107,romance,afternoon section,family,1990
+321,"movie like ChÃ¢teau, The",similar_to,5510,36,comedy,romance,funny,2000
+322,recommend comedy movies for a user who likes comedy,personalized,3313,70,comedy,family,family,1980
+323,funny movie from the 2000s,mood_decade,27876,238,comedy,german,funny,2000
+324,movie with scenes of family,visual_query,5539,13,children s,family,family,1980
+325,horror movie with romance,genre_tag,36533,219,horror,romance,classic,2000
+326,movie like Angels with Dirty Faces,similar_to,8600,120,crime,robot,dark,1930
+327,recommend drama movies for a user who likes action,personalized,982,248,drama,family,family,1950
+328,family-friendly movie from the 1990s,mood_decade,52413,91,drama,romance,family,1990
+329,movie with scenes of robot,visual_query,3345,218,adventure,robot,emotional,1960
+330,drama movie with detective,genre_tag,1622,248,drama,detective,heist,1990
+331,movie like Kaena: The Prophecy (Kaena: La prophÃ©tie),similar_to,8537,65,animation,robot,emotional,2000
+332,recommend horror movies for a user who likes comedy,personalized,2784,68,horror,detective,funny,1960
+333,thoughtful movie from the 2000s,mood_decade,5900,148,comedy,bibliothek,psychological,2000
+334,movie with scenes of classic vince vaughn,visual_query,45501,229,drama,classic vince vaughn,heist,2000
+335,comedy movie with robot,genre_tag,2277,134,comedy,robot,funny,1990
+336,movie like Dracula: Pages from a Virgin's Diary,similar_to,6366,179,mystery,space,heist,2000
+337,recommend adventure movies for a user who likes action,personalized,380,46,adventure,seen more than once,funny,1990
+338,fast-paced movie from the 1990s,mood_decade,573,111,drama,space,heist,1990
+339,movie with scenes of vacation,visual_query,2795,143,comedy,vacation,family,1980
+340,action movie with criterion,genre_tag,26012,189,action,criterion,family,1950
+341,movie like Billy Madison,similar_to,216,154,comedy,funniest movies,dark,1990
+342,recommend sci-fi movies for a user who likes comedy,personalized,5545,256,sci-fi,detective,family,1950
+343,funny movie from the 1930s,mood_decade,1256,58,musical,marx brothers,funny,1930
+344,movie with scenes of family,visual_query,1651,209,drama,family,family,1990
+345,war movie with romance,genre_tag,3441,96,war,romance,funny,1980
+346,movie like I'm Gonna Git You Sucka,similar_to,4066,108,action,space,emotional,1980
+347,recommend drama movies for a user who likes action,personalized,1533,235,drama,family,family,1990
+348,emotional movie from the 1950s,mood_decade,5975,61,drama,robot,emotional,1950
+349,movie with scenes of stand up,visual_query,4102,38,comedy,stand up,dark,1980
+350,action movie with space,genre_tag,26393,195,action,space,dark,1970
+351,movie like Girlhood,similar_to,6930,254,documentary,space,funny,2000
+352,recommend comedy movies for a user who likes action,personalized,3052,111,comedy,funny,funny,1990
+353,suspenseful movie from the 1980s,mood_decade,5542,46,action,dvd,mystery,1980
+354,movie with scenes of family,visual_query,5328,252,romance,family,family,2000
+355,comedy movie with audrey tautou,genre_tag,4973,137,comedy,audrey tautou,heist,2000
+356,movie like Vera Cruz,similar_to,45611,95,adventure,romance,psychological,1950
+357,recommend drama movies for a user who likes action,personalized,4967,232,drama,no happy end,mystery,2000
+358,family-friendly movie from the 1980s,mood_decade,6964,178,crime,family,family,1980
+359,movie with scenes of robot,visual_query,26339,230,action,robot,dark,1970
+360,sci-fi movie with detective,genre_tag,5042,170,sci-fi,detective,heist,1980
+361,movie like Titicut Follies,similar_to,26176,1,documentary,romance,dark,1960
+362,recommend drama movies for a user who likes action,personalized,6781,139,drama,detective,dark,1970
+363,dark movie from the 2000s,mood_decade,30816,188,romance,gerard butler,dark,2000
+364,movie with scenes of detective,visual_query,5940,89,comedy,detective,funny,1980
+365,comedy movie with family,genre_tag,26682,253,comedy,family,family,1990
+366,movie like Carny,similar_to,4832,50,drama,romance,classic,1980
+367,recommend drama movies for a user who likes comedy,personalized,3456,70,drama,iranian,classic,1990
+368,emotional movie from the 1990s,mood_decade,149,248,crime,interesting,emotional,1990
+369,movie with scenes of werewolf,visual_query,1321,114,comedy,werewolf,funny,1980
+370,drama movie with family,genre_tag,2237,239,drama,family,family,1990
+371,"movie like Second Jungle Book: Mowgli & Baloo, The",similar_to,1538,42,children s,robot,funny,1990
+372,recommend drama movies for a user who likes action,personalized,2520,149,drama,oscar best supporting actress,classic,1970
+373,dark movie from the 1990s,mood_decade,72,184,comedy,robot,dark,1990
+374,movie with scenes of romance,visual_query,6111,212,adventure,romance,funny,1980
+375,romance movie with gershwin,genre_tag,1244,72,romance,gershwin,classic,1970
+376,"movie like Million Dollar Hotel, The",similar_to,4146,175,mystery,robot,funny,2000
+377,recommend drama movies for a user who likes comedy,personalized,3185,63,drama,detective,emotional,1990
+378,family-friendly movie from the 1970s,mood_decade,5661,64,crime,family,family,1970
+379,movie with scenes of romance,visual_query,1415,182,romance,romance,heist,1990
+380,fantasy movie with robot,genre_tag,31698,99,fantasy,robot,psychological,2000
+381,movie like Games People Play: New York,similar_to,7350,258,comedy,detective,mystery,2000
+382,recommend thriller movies for a user who likes action,personalized,45981,138,thriller,robot,emotional,2000
+383,fast-paced movie from the 1990s,mood_decade,7343,191,documentary,space,heist,1990
+384,movie with scenes of space,visual_query,735,243,horror,space,family,1990
+385,film-noir movie with family,genre_tag,34193,194,film-noir,family,family,1940
+386,"movie like Contender, The",similar_to,3952,251,drama,robot,mystery,2000
+387,recommend drama movies for a user who likes action,personalized,1812,62,drama,detective,heist,1990
+388,classic movie from the 2000s,mood_decade,8011,118,documentary,detective,classic,2000
+389,movie with scenes of divx,visual_query,5881,144,drama,divx,heist,2000
+390,action movie with space,genre_tag,2421,257,action,space,funny,1980
+391,movie like Ghost in the Shell (KÃ´kaku kidÃ´tai),similar_to,741,189,animation,japan,mystery,1990
+392,recommend drama movies for a user who likes action,personalized,4126,206,drama,robert downey jr,classic,1980
+393,classic movie from the 1990s,mood_decade,140,156,romance,bibliothek,classic,1990
+394,movie with scenes of detective,visual_query,2272,164,drama,detective,heist,1990
+395,comedy movie with detective,genre_tag,5768,173,comedy,detective,emotional,1980
+396,movie like Summer Magic,similar_to,34624,1,comedy,detective,heist,1960
+397,recommend romance movies for a user who likes comedy,personalized,8486,203,romance,detective,funny,1930
+398,emotional movie from the 1980s,mood_decade,6818,191,drama,space,emotional,1980
+399,movie with scenes of family,visual_query,201,134,drama,family,family,1990
+400,musical movie with detective,genre_tag,3599,167,musical,detective,mystery,1940
+401,movie like Up the Academy,similar_to,5701,242,comedy,family,family,1980
+402,recommend horror movies for a user who likes comedy,personalized,5128,219,horror,my dvds,family,2000
+403,dark movie from the 1990s,mood_decade,65,223,comedy,polly shore,dark,1990
+404,movie with scenes of robot,visual_query,873,183,drama,robot,psychological,1970
+405,crime movie with robot,genre_tag,5867,225,crime,robot,mystery,1980
+406,movie like It Takes Two,similar_to,38,244,comedy,space,heist,1990
+407,recommend mystery movies for a user who likes comedy,personalized,6273,9,mystery,robot,funny,1950
+408,family-friendly movie from the 2000s,mood_decade,8872,229,comedy,family,family,2000
+409,movie with scenes of space,visual_query,666,265,romance,space,emotional,1990
+410,musical movie with space,genre_tag,51372,191,musical,space,heist,1990
+411,movie like Night and the City,similar_to,31770,28,film-noir,criterion,classic,1950
+412,recommend horror movies for a user who likes comedy,personalized,1992,207,horror,romance,funny,1990
+413,suspenseful movie from the 1980s,mood_decade,3691,219,comedy,romance,mystery,1980
+414,movie with scenes of family,visual_query,7121,255,comedy,family,family,1940
+415,horror movie with romance,genre_tag,5704,83,horror,romance,heist,1980
+416,movie like Arachnophobia,similar_to,2699,260,comedy,action,psychological,1990
+417,recommend sci-fi movies for a user who likes comedy,personalized,1590,79,sci-fi,horror,psychological,1990
+418,dark movie from the 2000s,mood_decade,5611,234,war,heath ledger,dark,2000
+419,movie with scenes of jeunet,visual_query,27721,6,mystery,jeunet,funny,2000
+420,drama movie with family,genre_tag,1548,228,drama,family,family,1990
+421,movie like New Best Friend,similar_to,5295,122,thriller,detective,psychological,2000
+422,recommend drama movies for a user who likes comedy,personalized,7702,244,drama,robot,dark,1940
+423,classic movie from the 2000s,mood_decade,4246,151,romance,girlie movie,classic,2000
+424,movie with scenes of romance,visual_query,7182,217,comedy,romance,dark,1960
+425,crime movie with anthony hopkins,genre_tag,5630,6,crime,anthony hopkins,family,2000
+426,movie like G,similar_to,36545,86,drama,detective,emotional,2000
+427,recommend sci-fi movies for a user who likes drama,personalized,4079,108,sci-fi,robot,dark,1980
+428,family-friendly movie from the 1980s,mood_decade,3679,132,documentary,detective,family,1980
+429,movie with scenes of oscar best supporting actress,visual_query,5036,176,comedy,oscar best supporting actress,psychological,1970
+430,drama movie with family,genre_tag,3434,27,drama,family,family,1990
+431,movie like Catwalk,similar_to,108,132,documentary,family,family,1990
+432,recommend romance movies for a user who likes comedy,personalized,4503,191,romance,family,family,1980
+433,family-friendly movie from the 1990s,mood_decade,31547,22,war,romance,family,1990
+434,movie with scenes of romance,visual_query,8011,120,documentary,romance,funny,2000
+435,comedy movie with detective,genre_tag,7675,79,comedy,detective,psychological,1940
+436,movie like Return of the Killer Tomatoes!,similar_to,5305,24,comedy,romance,emotional,1980
+437,recommend thriller movies for a user who likes comedy,personalized,591,236,thriller,space,heist,1990
+438,funny movie from the 1960s,mood_decade,26174,12,western,detective,funny,1960
+439,movie with scenes of space,visual_query,8499,34,drama,space,heist,1970
+440,drama movie with space,genre_tag,7095,209,drama,space,funny,1970
+441,movie like North to Alaska,similar_to,6455,186,western,robot,emotional,1960
+442,recommend drama movies for a user who likes comedy,personalized,979,51,drama,space,classic,1990
+443,family-friendly movie from the 1990s,mood_decade,1748,263,film-noir,sci fi,family,1990
+444,movie with scenes of robot,visual_query,8391,232,comedy,robot,psychological,1970
+445,musical movie with detective,genre_tag,4936,7,musical,detective,emotional,1980
+446,movie like Downfall (Der Untergang),similar_to,31410,57,drama,dvd,psychological,2000
+447,recommend horror movies for a user who likes crime,personalized,5713,66,horror,detective,classic,1980
+448,emotional movie from the 1990s,mood_decade,4004,238,drama,space,emotional,1990
+449,movie with scenes of romance,visual_query,50970,150,comedy,romance,classic,1970
+450,comedy movie with space,genre_tag,5658,175,comedy,space,funny,1980
+451,"movie like Pallbearer, The",similar_to,612,23,comedy,robot,family,1990
+452,recommend fantasy movies for a user who likes action,personalized,3754,155,fantasy,based on a cartoon,psychological,2000
+453,family-friendly movie from the 1990s,mood_decade,3400,123,fantasy,robot,family,1990
+454,movie with scenes of hitchcock,visual_query,2186,59,thriller,hitchcock,psychological,1950
+455,war movie with detective,genre_tag,2816,163,war,detective,mystery,1980
+456,movie like Nosferatu the Vampyre (Nosferatu: Phantom der Nacht),similar_to,5489,167,horror,werner herzog,psychological,1970
+457,recommend action movies for a user who likes action,personalized,4553,125,action,funny,funny,1980
+458,funny movie from the 1980s,mood_decade,5865,137,drama,detective,funny,1980
+459,movie with scenes of romance,visual_query,5228,63,comedy,romance,heist,1940
+460,comedy movie with family,genre_tag,4247,231,comedy,family,family,2000
+461,"movie like Year My Voice Broke, The",similar_to,3329,123,drama,robot,funny,1980
+462,recommend children s movies for a user who likes comedy,personalized,4057,204,children s,romance,heist,2000
+463,fast-paced movie from the 1950s,mood_decade,8675,145,war,submarine,heist,1950
+464,movie with scenes of robot,visual_query,2101,26,adventure,robot,classic,1990
+465,musical movie with space,genre_tag,5472,44,musical,space,psychological,1970
+466,"movie like Beastmaster, The",similar_to,4915,227,action,detective,emotional,1980
+467,recommend horror movies for a user who likes comedy,personalized,8220,202,horror,romance,funny,1930
+468,emotional movie from the 1990s,mood_decade,1110,262,action,space,emotional,1990
+469,movie with scenes of family,visual_query,452,192,drama,family,family,1990
+470,thriller movie with samuel l jackson,genre_tag,6595,141,thriller,samuel l jackson,funny,2000
+471,movie like Happy Together,similar_to,4601,252,romance,detective,funny,1980
+472,recommend documentary movies for a user who likes comedy,personalized,27873,113,documentary,must see,dark,2000
+473,fast-paced movie from the 1990s,mood_decade,1734,52,drama,transgendered,heist,1990
+474,movie with scenes of detective,visual_query,5961,261,action,detective,mystery,1990
+475,romance movie with family,genre_tag,3426,19,romance,family,family,1990
+476,movie like Jackass Number Two,similar_to,48322,169,comedy,ass,family,2000
+477,recommend musical movies for a user who likes action,personalized,8393,120,musical,family,family,1980
+478,dark movie from the 1960s,mood_decade,909,17,comedy,oscar best picture,dark,1960
+479,movie with scenes of family,visual_query,1169,214,documentary,family,family,1990
+480,documentary movie with family,genre_tag,39410,37,documentary,family,family,2000
+481,movie like Mystery of the Wax Museum,similar_to,8206,63,horror,detective,classic,1930
+482,recommend comedy movies for a user who likes action,personalized,3306,75,comedy,chaplin,classic,1920
+483,dark movie from the 1980s,mood_decade,26599,154,comedy,pedro almodãâ3var,dark,1980
+484,movie with scenes of detective,visual_query,7313,198,adventure,detective,mystery,1990
+485,musical movie with family,genre_tag,33688,191,musical,family,family,2000
+486,movie like Sherlock Jr.,similar_to,25750,71,fantasy,buster keaton,family,1920
+487,recommend drama movies for a user who likes crime,personalized,7808,145,drama,family,family,1960
+488,fast-paced movie from the 2000s,mood_decade,7152,61,thriller,space,heist,2000
+489,movie with scenes of family,visual_query,2798,47,comedy,family,family,1990
+490,thriller movie with family,genre_tag,2110,137,thriller,family,family,1980
+491,movie like Baby's Day Out,similar_to,5096,215,comedy,family,family,1990
+492,recommend action movies for a user who likes comedy,personalized,7000,136,action,heist,heist,1990
+493,thoughtful movie from the 1920s,mood_decade,44587,160,drama,criterion,psychological,1920
+494,movie with scenes of tom hanks,visual_query,2028,108,drama,tom hanks,classic,1990
+495,western movie with romance,genre_tag,3133,13,western,romance,classic,1920
+496,"movie like Last Days, The",similar_to,2494,108,documentary,jewish holocaust,mystery,1990
+497,recommend thriller movies for a user who likes action,personalized,2209,6,thriller,space,heist,1930
+498,funny movie from the 2000s,mood_decade,8733,217,thriller,space,funny,2000
+499,movie with scenes of available at cml,visual_query,1950,53,mystery,available at cml,mystery,1960

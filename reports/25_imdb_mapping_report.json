@@ -1,0 +1,8 @@
+{
+  "catalog_movies": 10000,
+  "mapped_movies": 6131,
+  "coverage": 0.6131,
+  "basics_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\IMDb Non-Commercial Datasets\\title.basics.tsv.gz",
+  "ratings_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\IMDb Non-Commercial Datasets\\title.ratings.tsv.gz",
+  "output": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\imdb_enrichment.csv"
+}

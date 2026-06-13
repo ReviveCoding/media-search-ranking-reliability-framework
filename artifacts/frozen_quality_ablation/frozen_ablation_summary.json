@@ -1,0 +1,76 @@
+{
+  "champion": {
+    "run_name": "combined_feature_only",
+    "variant": "combined_feature_only",
+    "ranker_profile": "compact",
+    "ndcg_at_10": 0.3220335586700807,
+    "mrr_at_10": 0.5461960878627545,
+    "recall_efficiency_at_10": 0.2657046657046657,
+    "hit_rate_at_10": 0.6666666666666666,
+    "ranker_lift_vs_hybrid": 0.20451072695756595,
+    "genre_tag_ndcg": 0.4984182526810865,
+    "mood_decade_ndcg": 0.10207422253223361,
+    "personalized_ndcg": 0.21669352163244587,
+    "similar_to_ndcg": 0.12418608470007844,
+    "visual_query_ndcg": 0.706742781336953,
+    "ece": 0.005176509592610651,
+    "p95_latency_ms": 198.03842999535843,
+    "launch_decision": "ITERATE",
+    "tag_genome_applied": true,
+    "imdb_applied": true,
+    "retrieval_text_changed": false,
+    "eligible_for_promotion": true
+  },
+  "canonical_core_baseline": {
+    "run_name": "core_champion_replay",
+    "variant": "core_champion_replay",
+    "ranker_profile": "compact",
+    "ndcg_at_10": 0.31259866304446476,
+    "mrr_at_10": 0.5094556677890011,
+    "recall_efficiency_at_10": 0.26738816738816734,
+    "hit_rate_at_10": 0.6363636363636364,
+    "ranker_lift_vs_hybrid": 0.19507583133195,
+    "genre_tag_ndcg": 0.4840223547123718,
+    "mood_decade_ndcg": 0.09540495069193819,
+    "personalized_ndcg": 0.21708025287299604,
+    "similar_to_ndcg": 0.09654536014707571,
+    "visual_query_ndcg": 0.7091413824989301,
+    "ece": 0.0049062433537841385,
+    "p95_latency_ms": 330.8734650039695,
+    "launch_decision": "ITERATE",
+    "tag_genome_applied": false,
+    "imdb_applied": false,
+    "retrieval_text_changed": false
+  },
+  "legacy_profile_selection_run": "core_compact",
+  "replay_diagnostics_status": "legacy_not_strictly_comparable",
+  "strict_gpu_replay_claim": false,
+  "manifest_dir": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\benchmarks\\ml10m_frozen_v1",
+  "strict_contract_runs": [
+    "core_champion_replay",
+    "tag_genome_feature_only",
+    "imdb_feature_only",
+    "combined_feature_only"
+  ],
+  "legacy_contract_diagnostics": {
+    "core_conservative": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": false,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    },
+    "core_balanced": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": true,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    },
+    "core_compact": {
+      "manifest_equal_to_canonical": true,
+      "split_equal_to_canonical": true,
+      "strictly_comparable": false,
+      "role": "legacy_profile_selection_context_only"
+    }
+  },
+  "promotion_rule": "same frozen manifest/splits, no retrieval-text drift, positive ranker lift, no >10% slice regression, non-negative overall NDCG change"
+}

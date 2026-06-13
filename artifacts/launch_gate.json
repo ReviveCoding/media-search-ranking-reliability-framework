@@ -1,0 +1,89 @@
+{
+  "decision": "ITERATE",
+  "checks": [
+    {
+      "check": "ndcg_at_10",
+      "passed": false,
+      "value": 0.1659006659145932,
+      "threshold": 0.3
+    },
+    {
+      "check": "recall_efficiency_at_10",
+      "passed": false,
+      "value": 0.13738095238095235,
+      "threshold": 0.5
+    },
+    {
+      "check": "mrr_at_10",
+      "passed": true,
+      "value": 0.38800264550264546,
+      "threshold": 0.2
+    },
+    {
+      "check": "ece",
+      "passed": true,
+      "value": 0.0037304438594005095,
+      "threshold": 0.18
+    },
+    {
+      "check": "p95_latency_ms",
+      "passed": true,
+      "value": 143.1081099981384,
+      "threshold": 500
+    },
+    {
+      "check": "long_tail_hit_rate",
+      "passed": false,
+      "value": 0.1282051282051282,
+      "threshold": 0.5
+    },
+    {
+      "check": "cold_start_hit_rate",
+      "passed": false,
+      "value": 0.0,
+      "threshold": 0.5
+    },
+    {
+      "check": "ranker_ndcg_lift",
+      "passed": true,
+      "value": 0.11606944406956474,
+      "threshold": 0.01
+    },
+    {
+      "check": "similar_to_self_return",
+      "passed": true,
+      "value": 0.0,
+      "threshold": 0.0
+    },
+    {
+      "check": "ranker_backend_contract",
+      "passed": true,
+      "value": "lightgbm-lambdarank-gpu",
+      "threshold": "prefix:lightgbm-lambdarank"
+    },
+    {
+      "check": "dense_backend_contract",
+      "passed": true,
+      "value": "sentence-transformers:cuda",
+      "threshold": "prefix:sentence-transformers"
+    },
+    {
+      "check": "approved_public_or_synthetic_data_only",
+      "passed": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "check": "no_private_user_data",
+      "passed": true,
+      "value": true,
+      "threshold": true
+    },
+    {
+      "check": "no_production_deployment_claim",
+      "passed": true,
+      "value": true,
+      "threshold": true
+    }
+  ]
+}

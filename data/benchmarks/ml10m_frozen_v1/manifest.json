@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "seed": 42,
+  "data_source": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\ml-10m",
+  "catalog_fingerprint": "82c8f9cbf0375e41e2a1f1eafcad5dac99e5b5d33d005e34d3de5c7d8e2a196b",
+  "catalog_size": 10000,
+  "query_count": 500,
+  "judgment_count": 50000
+}

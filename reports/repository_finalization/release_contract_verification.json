@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "champion": "combined_feature_only",
+  "canonical_baseline": "core_champion_replay",
+  "canonical_contract_validated": true,
+  "strict_replay_claim": false,
+  "tracked_files_over_100_mb": 0
+}

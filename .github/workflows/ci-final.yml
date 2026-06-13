@@ -1,0 +1,35 @@
+name: ci-final
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install declared dependencies
+        run: python scripts/ci_install.py
+
+      - name: Compile source and scripts
+        run: python -m compileall -q src scripts
+
+      - name: Run tests
+        run: python -m pytest -q
+
+      - name: Verify frozen release contract
+        run: python scripts/verify_release_contract.py --repo .

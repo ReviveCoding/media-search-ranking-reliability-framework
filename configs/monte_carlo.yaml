@@ -1,0 +1,63 @@
+base_seed: 20260611
+trials_per_scenario: 1
+keep_trial_artifacts: false
+small_data:
+  demo_movies: 120
+  demo_users: 80
+  demo_ratings: 2000
+  num_queries: 50
+  candidates_per_query: 30
+  retrieval_top_k: 30
+  ranker_estimators: 50
+scenarios:
+  nominal:
+    popularity_alpha: 1.05
+    preference_strength: 1.35
+    rating_noise: 0.7
+    tag_observation_prob: 0.35
+    exploration_rate: 0.12
+    cold_start_fraction: 0.08
+    label_noise: 0.0
+  high_noise:
+    popularity_alpha: 1.05
+    preference_strength: 0.45
+    rating_noise: 1.8
+    tag_observation_prob: 0.3
+    exploration_rate: 0.35
+    cold_start_fraction: 0.08
+    label_noise: 0.35
+  long_tail_skew:
+    popularity_alpha: 1.55
+    preference_strength: 1.3
+    rating_noise: 0.8
+    tag_observation_prob: 0.35
+    exploration_rate: 0.06
+    cold_start_fraction: 0.14
+    label_noise: 0.02
+  sparse_metadata:
+    popularity_alpha: 1.1
+    preference_strength: 1.2
+    rating_noise: 0.85
+    tag_observation_prob: 0.08
+    exploration_rate: 0.15
+    cold_start_fraction: 0.1
+    label_noise: 0.03
+acceptance:
+  pipeline_success_rate_min: 1.0
+  finite_metric_rate_min: 1.0
+  positive_ranker_lift_rate_min: 0.75
+  median_ranker_ndcg_lift_min: 0.02
+  ndcg_at_10_p05_min: 0.45
+  recall_efficiency_at_10_p05_min: 0.45
+  ece_p95_max: 0.2
+  p95_latency_p95_max_ms: 500
+  similar_to_self_return_p95_max: 0.25
+  no_block_decisions: true
+  split_integrity_rate_min: 1.0
+  clean_truth_evaluation_rate_min: 1.0
+  high_noise_degradation_rate_min: 0.5
+parameter_sampling:
+  enabled: true
+  relative_sd: 0.04
+  probability_sd: 0.012
+trial_timeout_seconds: 240

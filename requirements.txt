@@ -1,0 +1,2 @@
+# Compatibility installer. pyproject.toml is the single dependency source of truth.
+-e .[dev]

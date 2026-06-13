@@ -1,0 +1,251 @@
+user_id,preferred_genres,preferred_tags
+1,comedy|action|children's,action|disney|bibliothek
+2,action|adventure|drama,carrie fisher|george lucas|harrison ford
+3,drama|romance|comedy,afternoon section|bibliothek|drama
+4,drama|action|adventure,action|disney|afternoon section
+5,drama|comedy|romance,classic|bibliothek|afi100
+6,action|drama|sci-fi,sci fi|action|classic
+7,thriller|drama|crime,classic|hitchcock|bibliothek
+8,thriller|comedy|action,bibliothek|funny|action
+9,comedy|drama|crime,criterion|benicio del toro|drugs
+10,drama|romance|comedy,bibliothek|drama|oscar best picture
+11,action|adventure|comedy,classic|action|harrison ford
+12,drama|action|adventure,drama|alien invasion|dvd
+13,drama|comedy|action,classic|afternoon section|alien
+14,comedy|adventure|drama,dvd|musical|action
+16,sci-fi|action|adventure,sci fi|bibliothek|alien
+17,thriller|drama|action,classic|drama|hitchcock
+18,drama|thriller|action,action|classic|bibliothek
+19,drama|comedy|romance,funny|bibliothek|classic
+22,drama|action|adventure,crime|action|classic
+23,comedy|drama|crime,bibliothek|classic|crime
+24,action|comedy|drama,classic|harrison ford|action
+26,action|thriller|adventure,action|afternoon section|alien
+27,thriller|action|adventure,brilliant|classic|action
+28,comedy|adventure|fantasy,funny|action|adventure
+29,action|comedy|crime,adam sandler|afternoon section|al pacino
+30,drama|comedy|romance,classic|disney|funny
+33,drama|comedy|crime,bibliothek|classic|on computer
+34,action|thriller|drama,action|bibliothek|classic
+35,drama|thriller|action,bibliothek|action|divx
+36,comedy|drama|crime,bibliothek|classic|funny
+37,action|thriller|crime,action|crime|funny
+38,drama|thriller|romance,bibliothek|afternoon section|boring
+40,drama|comedy|crime,classic|bibliothek|crime
+41,comedy|romance|drama,classic|girlie movie|delights
+42,drama|comedy|romance,funny|girlie movie|bibliothek
+43,comedy|romance|drama,girlie movie|afternoon section|bibliothek
+44,drama|comedy|romance,bibliothek|classic|oscar best actress
+45,drama|thriller|action,drama|action|classic
+46,comedy|action|adventure,action|alone|boring
+47,action|drama|adventure,action|dvd|bibliothek
+48,action|comedy|thriller,boring|cars|eh
+50,drama|romance|comedy,girlie movie|action|classic
+51,drama|comedy|romance,classic|oscar best picture|hitchcock
+52,drama|comedy|mystery,classic|oscar best picture|film theory and criticism
+53,drama|comedy|thriller,bibliothek|action|drama
+54,drama|thriller|action,action|crime|classic
+55,drama|comedy|crime,bibliothek|classic|classical
+56,drama|comedy|romance,classic|bibliothek|oscar best directing
+57,action|thriller|drama,bibliothek|afternoon section|nicolas cage
+58,drama|comedy|romance,classic|bibliothek|oscar best picture
+59,thriller|adventure|drama,classic|007|action
+60,drama|comedy|romance,classic|bibliothek|oscar best actor
+61,drama|romance|comedy,classic|drama|delights
+62,action|thriller|adventure,action|space|a very touching movie great role played by mel gibson as william wallace
+63,drama|comedy|crime,classic|oscar best picture|afi100
+64,drama|adventure|action,classic|bibliothek|harrison ford
+65,drama|comedy|adventure,classic|funny|disney
+66,drama|thriller|crime,bibliothek|crime|dvd
+67,drama|thriller|action,classic|action|crime
+68,drama|comedy|thriller,classic|bibliothek|hitchcock
+69,drama|romance|comedy,classic|drama|oscar best picture
+70,drama|comedy|thriller,classic|bibliothek|criterion
+71,action|drama|adventure,a very touching movie great role played by mel gibson as william wallace|action|animated classic
+72,thriller|action|adventure,action|afternoon section|funny
+73,comedy|drama|thriller,classic|bibliothek|dvd
+74,comedy|drama|action,afternoon section|bibliothek|14 01 06
+75,action|thriller|crime,action|bruce willis|afternoon section
+76,action|thriller|adventure,action|arnold schwarzenegger|crime
+77,drama|comedy|thriller,action|crime|drama
+78,drama|comedy|thriller,classic|funny|criterion
+79,drama|comedy|crime,classic|bibliothek|crime
+80,comedy|drama|action,oscar best supporting actor|action|classic
+81,drama|thriller|action,bibliothek|classic|oscar best picture
+82,comedy|drama|romance,fantasy|action|adventure
+83,comedy|drama|adventure,classic|afi100|breakthroughs
+84,drama|action|adventure,emotion|harrison ford|abe
+85,drama|comedy|crime,classic|crime|action
+86,action|adventure|sci-fi,action|classic|disney
+87,comedy|drama|action,action|bibliothek|drama
+88,action|comedy|drama,action|afternoon section|bibliothek
+89,drama|action|comedy,bibliothek|three colors trilogy|action
+90,comedy|adventure|drama,classic|action|drama
+91,drama|comedy|adventure,classic|delights|oscar best picture
+92,drama|action|thriller,action|classic|drama
+93,drama|romance|comedy,adultery|cameron diaz|jane austen
+94,drama|thriller|action,bibliothek|classic|action
+95,drama|thriller|action,action|classic|crime
+96,drama|comedy|action,classic|action|drama
+97,drama|thriller|action,action|bibliothek|boring
+98,drama|comedy|crime,bibliothek|classic|on disc
+99,drama|thriller|crime,classic|bibliothek|dvd
+100,drama|thriller|action,classic|crime|action
+101,action|drama|thriller,action|afternoon section|bibliothek
+102,thriller|drama|crime,crime|action|classic
+103,drama|comedy|action,bibliothek|classic|beautiful
+104,drama|action|romance,classic|oscar best picture|delights
+105,sci-fi|adventure|action,classic|harrison ford|carrie fisher
+106,action|thriller|adventure,action|007|classic
+107,drama|action|sci-fi,classic|bibliothek|action
+108,drama|mystery|thriller,bibliothek|oscar best cinematography|seen
+110,action|thriller|adventure,action|arnold schwarzenegger|drama
+111,thriller|action|adventure,action|crime|classic
+112,drama|comedy|romance,classic|bibliothek|afi100
+113,drama|comedy|romance,bibliothek|classic|drama
+114,comedy|adventure|drama,classic|george lucas|oscar best picture
+115,comedy|drama|romance,classic|afternoon section|oscar best picture
+116,drama|comedy|romance,afternoon section|bibliothek|action
+117,comedy|adventure|action,adventure|funny|action
+118,drama|action|thriller,action|classic|crime
+119,drama|comedy|crime,bibliothek|classic|crime
+120,comedy|action|adventure,09 05 06|action|adam sandler
+121,drama|thriller|comedy,classic|hitchcock|afi100
+122,comedy|drama|romance,classic|bibliothek|funny
+123,drama|comedy|children's,disney|oscar best picture|classic
+124,drama|adventure|comedy,classic|criterion|action
+125,comedy|drama|action,classic|action|funny
+126,drama|action|thriller,classic|action|bibliothek
+127,horror|thriller|comedy,alone|based on a comic book|bit overrated
+128,drama|romance|comedy,bibliothek|girlie movie|action
+129,comedy|drama|adventure,funny|dvd|kevin smith
+130,drama|comedy|crime,classic|bibliothek|crime
+131,drama|crime|thriller,bibliothek|crime|cult film
+132,crime|drama|horror,classic|anthony hopkins|brilliant horror
+134,action|adventure|drama,bibliothek|afternoon section|brilliant
+135,adventure|action|thriller,classic|action|bibliothek
+136,drama|comedy|crime,classic|oscar best picture|oscar best directing
+137,action|drama|comedy,action|drama|afternoon section
+138,action|drama|thriller,action|classic|bibliothek
+139,drama|action|comedy,classic|drama|action
+140,drama|comedy|war,oscar best picture|oscar best directing|classic
+141,comedy|drama|romance,action|arnold schwarzenegger|bibliothek
+142,drama|crime|thriller,classic|crime|bibliothek
+143,comedy|drama|action,classic|funny|cult classic
+144,drama|thriller|action,classic|action|bibliothek
+145,crime|drama|thriller,crime|based on a true story|classic
+148,comedy|action|adventure,bibliothek|sci fi|action
+149,action|drama|adventure,action|dvd|bibliothek
+150,drama|romance|comedy,bibliothek|19th century|book
+151,comedy|drama|musical,classic|disney|afi100
+152,thriller|action|drama,action|classic|sci fi
+153,action|drama|thriller,sci fi|action|arnold schwarzenegger
+154,action|comedy|sci-fi,action|sci fi|dvd
+155,comedy|action|drama,action|classic|funny
+156,drama|comedy|romance,bibliothek|addiction|afternoon section
+157,comedy|thriller|drama,afternoon section|bibliothek|boring
+158,drama|thriller|crime,bibliothek|crime|serial killer
+159,musical|western|children's,classic|delights|disney
+160,action|thriller|adventure,action|harrison ford|dvd
+161,thriller|action|drama,classic|dvd|action
+162,action|adventure|drama,action|bibliothek|divx
+163,crime|thriller|drama,bibliothek|crime|classic
+164,action|thriller|comedy,action|afternoon section|bibliothek
+165,action|drama|comedy,action|afternoon section|best of the originals
+166,action|thriller|adventure,action|sci fi|alien
+167,comedy|crime|drama,addiction|bibliothek|black comedy
+168,comedy|animation|children's,disney|kids|abhorrent
+169,drama|action|comedy,boring|drama|interesting
+170,comedy|thriller|crime,brad pitt|divx|do kupienia
+171,comedy|drama|action,funny|action|dvd
+172,action|thriller|drama,action|afternoon section|drama
+173,drama|thriller|comedy,classic|action|bibliothek
+174,drama|romance|comedy,classic|bibliothek|emotion
+175,drama|thriller|action,classic|bibliothek|action
+176,action|adventure|drama,action|drama|space
+177,comedy|drama|adventure,classic|addiction|bibliothek
+178,drama|comedy|romance,bibliothek|classic|drama
+179,drama|thriller|action,classic|bibliothek|sci fi
+180,drama|comedy|crime,action|bibliothek|classic
+182,drama|comedy|romance,classic|bibliothek|delights
+183,drama|romance|adventure,classic|bibliothek|oscar best directing
+184,drama|crime|action,crime|brad pitt|classic
+185,romance|comedy|drama,bibliothek|classic|breakthroughs
+186,thriller|drama|crime,classic|bibliothek|hitchcock
+187,drama|comedy|romance,drama|girlie movie|afternoon section
+188,action|drama|adventure,action|arnold schwarzenegger|bibliothek
+189,action|thriller|drama,action|classic|arnold schwarzenegger
+190,adventure|action|fantasy,action|adventure|dvd
+191,comedy|drama|crime,aardman|aardman studios|animated
+192,drama|crime|comedy,classic|divx|bibliothek
+193,drama|comedy|romance,action|classic|crime
+194,comedy|drama|romance,alien invasion|bibliothek|boring
+195,drama|comedy|crime,classic|bibliothek|oscar best cinematography
+196,action|drama|adventure,action|classic|bibliothek
+197,comedy|crime|drama,classic|bibliothek|funny
+198,drama|comedy|thriller,classic|bibliothek|sci fi
+199,adventure|drama|thriller,action|disney|good
+200,comedy|adventure|drama,ari|brilliant|classic
+201,drama|comedy|romance,funny|bibliothek|classic
+202,drama|comedy|romance,bibliothek|girlie movie|historical
+203,comedy|drama|thriller,classic|bibliothek|crime
+204,drama|romance|comedy,addiction|black comedy|classic
+205,drama|comedy|crime,classic|delights|bibliothek
+206,thriller|drama|action,classic|bibliothek|action
+207,drama|comedy|romance,gay|bibliothek|do kupienia
+208,action|thriller|comedy,action|bibliothek|afternoon section
+209,comedy|drama|romance,gay|classic|animated
+210,drama|adventure|action,action|bibliothek|sci fi
+211,drama|action|thriller,classic|hitchcock|oscar best picture
+212,drama|thriller|romance,criterion|classic|bibliothek
+213,thriller|drama|crime,action|bibliothek|drama
+214,comedy|drama|romance,classic|bibliothek|funny
+215,drama|comedy|crime,classic|bibliothek|afi100
+216,comedy|romance|adventure,action|animation|anime
+217,romance|comedy|drama,girlie movie|afternoon section|chick flick
+218,drama|comedy|crime,classic|abe|ari
+219,comedy|drama|romance,classic|disney|delights
+220,drama|western|comedy,oscar best actor|oscar best cinematography|alone
+221,action|comedy|drama,action|classic|afternoon section
+222,drama|romance|action,classic|26 02 06|afi100
+223,comedy|action|drama,afternoon section|action|bibliothek
+224,comedy|thriller|action,action|afternoon section|bibliothek
+225,mystery|thriller|crime,classic|film theory and criticism|hitchcock
+226,comedy|drama|action,classic|drama|oscar best picture
+227,drama|comedy|war,criterion|anime|miyazaki
+228,action|thriller|adventure,action|arnold schwarzenegger|bibliothek
+229,comedy|drama|adventure,classic|afternoon section|brilliant
+230,drama|comedy|crime,classic|bibliothek|breakthroughs
+231,comedy|action|drama,kevin spacey|absurd|action
+232,action|thriller|drama,classic|action|harrison ford
+234,drama|thriller|crime,bibliothek|action|nonlinear
+235,thriller|drama|action,classic|action|dvd
+236,drama|thriller|comedy,bibliothek|classic|crime
+237,comedy|drama|action,classic|action|carrie fisher
+238,drama|comedy|fantasy,dvd|bibliothek|elizabethan
+239,drama|action|comedy,action|harrison ford|afternoon section
+241,comedy|drama|mystery,bibliothek|dvd|funny
+242,action|thriller|adventure,bibliothek|afternoon section|harrison ford
+243,comedy|drama|action,classic|action|drama
+244,drama|comedy|romance,classic|oscar best picture|oscar best directing
+245,drama|comedy|crime,classic|bibliothek|afi100
+246,comedy|drama|crime,divx|classic|afi100
+247,comedy|drama|action,action|bibliothek|afternoon section
+248,drama|action|crime,bibliothek|classic|based on book
+249,thriller|action|drama,divx|action|bibliothek
+250,drama|action|adventure,boring|bibliothek|a very touching movie great role played by mel gibson as william wallace
+251,action|drama|thriller,classic|action|bibliothek
+252,drama|comedy|romance,classic|oscar best picture|hitchcock
+253,comedy|action|drama,bibliothek|action|girlie movie
+254,drama|thriller|sci-fi,classic|sci fi|bibliothek
+255,drama|adventure|comedy,afternoon section|classic|drama
+256,comedy|romance|drama,crime|johnny depp|serial killer
+257,action|drama|thriller,action|bibliothek|drama
+258,action|thriller|drama,classic|bibliothek|action
+259,drama|comedy|thriller,bibliothek|drama|crime
+260,action|sci-fi|thriller,classic|sci fi|action
+261,comedy|drama|sci-fi,sci fi|bibliothek|delights
+262,action|thriller|crime,action|sci fi|arnold schwarzenegger
+263,drama|action|comedy,classic|action|sci fi
+264,comedy|romance|thriller,action|crime|bibliothek
+265,action|thriller|drama,afternoon section|action|boring

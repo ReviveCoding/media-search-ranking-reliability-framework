@@ -1,0 +1,26 @@
+﻿* text=auto
+
+# Cross-platform source and configuration
+*.py   text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.csv  text eol=lf
+*.md   text eol=lf
+*.toml text eol=lf
+*.sh   text eol=lf
+Dockerfile text eol=lf
+Makefile text eol=lf
+
+# Windows-native scripts
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.joblib binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.zip binary
+*.gz binary

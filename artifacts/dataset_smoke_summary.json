@@ -1,0 +1,51 @@
+{
+  "decision": "PASS",
+  "quick": true,
+  "formats": [
+    "dat",
+    "csv"
+  ],
+  "results": [
+    {
+      "format": "dat",
+      "passed": true,
+      "decision": "REVIEW",
+      "ranker_backend": "lightgbm-lambdarank-cpu",
+      "dense_backend": "sentence-transformers:cuda",
+      "vector_index_backend": "sklearn-nearest-neighbors-fallback",
+      "ndcg_at_10": 0.3291944129345956,
+      "ranker_ndcg_lift_vs_hybrid": 0.18366542199002353,
+      "missing_artifacts": [],
+      "checks": {
+        "pipeline_completed": true,
+        "artifact_contract": true,
+        "ranker_backend_contract": true,
+        "anchor_leakage_free": true,
+        "personalized_user_leakage_free": true,
+        "valid_launch_decision": true,
+        "public_data_evaluation_truth": true
+      }
+    },
+    {
+      "format": "csv",
+      "passed": true,
+      "decision": "REVIEW",
+      "ranker_backend": "lightgbm-lambdarank-cpu",
+      "dense_backend": "sentence-transformers:cuda",
+      "vector_index_backend": "sklearn-nearest-neighbors-fallback",
+      "ndcg_at_10": 0.3291944129345956,
+      "ranker_ndcg_lift_vs_hybrid": 0.18366542199002353,
+      "missing_artifacts": [],
+      "checks": {
+        "pipeline_completed": true,
+        "artifact_contract": true,
+        "ranker_backend_contract": true,
+        "anchor_leakage_free": true,
+        "personalized_user_leakage_free": true,
+        "valid_launch_decision": true,
+        "public_data_evaluation_truth": true
+      }
+    }
+  ],
+  "interpretation": "PASS means both MovieLens file-layout paths completed ingestion, ranking, evaluation, and artifact generation. A launch decision of REVIEW or ITERATE is a data-quality/model-quality outcome, not a runnability failure."
+}

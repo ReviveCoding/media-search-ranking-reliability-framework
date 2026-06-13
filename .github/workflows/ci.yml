@@ -1,0 +1,70 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install package and development dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Dependency, syntax, and import checks
+        run: |
+          python -m pip check
+          python -m compileall -q src scripts tests dashboards
+          python -c "import media_search_reliability; print(media_search_reliability.__version__)"
+
+      - name: Unit and component tests
+        run: PYTHONPATH=src python -m pytest -q
+
+      - name: Environment preflight
+        run: python scripts/preflight_check.py
+
+      - name: Local end-to-end audit
+        run: python scripts/local_audit.py --mode demo
+
+      - name: Dataset-only MovieLens format audit
+        run: python scripts/dataset_smoke_test.py --quick
+
+      - name: API smoke test
+        run: python scripts/api_smoke_test.py
+
+      - name: Cross-process reproducibility replay
+        run: python scripts/reproducibility_check.py
+
+      - name: Quick paired Monte Carlo stress audit
+        run: python scripts/monte_carlo_validate.py --trials-per-scenario 1
+
+      - name: Build wheel and source distribution
+        run: python -m build
+
+      - name: Install built wheel in an isolated virtual environment
+        shell: bash
+        run: |
+          python -m venv .wheel-smoke
+          .wheel-smoke/bin/python -m pip install --upgrade pip
+          .wheel-smoke/bin/python -m pip install dist/*.whl
+          .wheel-smoke/bin/python -c "import media_search_reliability; print(media_search_reliability.__version__)"
+          .wheel-smoke/bin/media-search-api --help
+          .wheel-smoke/bin/media-search-run --help
+          .wheel-smoke/bin/media-search-download --help
+          .wheel-smoke/bin/media-search-dataset-smoke --help
+          mkdir -p /tmp/media-search-wheel-e2e
+          cd /tmp/media-search-wheel-e2e
+          "$GITHUB_WORKSPACE/.wheel-smoke/bin/media-search-run" --mode demo
+          "$GITHUB_WORKSPACE/.wheel-smoke/bin/python" -c "import json, pathlib; p=pathlib.Path('artifacts/eval_summary.json'); s=json.loads(p.read_text()); assert s['launch_decision'] == 'PASS'; assert s['ranker_backend'].startswith('lightgbm-lambdarank')"
+          "$GITHUB_WORKSPACE/.wheel-smoke/bin/media-search-dataset-smoke" --formats dat --quick --output-root /tmp/media-search-wheel-dataset-smoke
+
+      - name: Docker build contract
+        run: docker build -t media-search-reliability:ci .

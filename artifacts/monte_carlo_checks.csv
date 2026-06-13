@@ -1,0 +1,21 @@
+check,passed,value,threshold,interpretation
+pipeline_success_rate,True,1.0,1.0,Every independent trial should complete end to end.
+finite_metric_rate,True,1.0,1.0,Metrics must be finite and lie in expected bounds.
+positive_ranker_lift_rate,True,0.975,0.75,The learned ranker should usually improve hybrid retrieval.
+median_ranker_ndcg_lift,True,0.1818695283015555,0.02,Median lift guards against one lucky seed.
+ndcg_at_10_lower_tail,True,0.5989215505768051,0.45,The lower tail should remain useful under stress scenarios.
+recall_efficiency_lower_tail,True,0.5395000000000001,0.45,Top-k should recover a useful fraction of the maximum relevant items that can fit in top-k.
+ece_upper_tail,True,0.1953199263306737,0.2,Calibration error should remain controlled.
+latency_upper_tail,True,47.86305949714005,500,Small-data serving latency must stay within the configured local budget.
+similar_to_self_return_upper_tail,True,0.0,0.25,A similar-to query should not simply return its anchor item.
+no_block_decisions,True,0.0,0,No approved-data Monte Carlo trial should violate a hard claim/privacy boundary.
+split_integrity_rate,True,1.0,1.0,Anchor and personalized-user groups should not cross data splits.
+clean_truth_evaluation_rate,True,1.0,1.0,Synthetic trials should evaluate against latent clean relevance rather than noisy observed labels.
+long_tail_scenario_is_more_skewed,True,0.21572916666666675,> 0,Paired long-tail trials should increase popularity inequality.
+sparse_metadata_has_lower_coverage,True,-0.2916666666666667,< 0,Paired sparse-metadata trials should reduce observed tag coverage.
+sparse_metadata_reduces_visual_query_quality,True,-0.14009069986021666,< 0,Paired sparse-metadata trials should reduce visual-query quality.
+high_noise_has_higher_rating_variance,True,0.624671340972236,> 0,Paired high-noise trials should increase rating dispersion.
+high_noise_weakens_preference_signal,True,-0.14733102409437676,< 0,Paired high-noise trials should weaken preference-to-rating correlation.
+high_noise_reduces_ranking_quality_paired_median,True,-0.09965649045442959,< 0,Paired high-noise trials should reduce median clean-truth NDCG.
+high_noise_degradation_rate,True,0.9,0.5,A majority of paired high-noise trials should degrade ranking quality.
+high_noise_increases_label_disagreement,True,0.17800000000000002,> 0,Paired high-noise trials should increase observed-vs-clean label disagreement.
