@@ -1,4 +1,4 @@
-﻿# Multimodal Media Search Reliability Framework
+# Media Search Retrieval, Ranking & Reliability Framework
 
 <!-- PUBLIC_PORTFOLIO_START -->
 <p align="center">
@@ -6,8 +6,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ReviveCoding/media-search-multimodal-discovery-reliability-framework/actions/workflows/ci-final.yml">
-    <img src="https://github.com/ReviveCoding/media-search-multimodal-discovery-reliability-framework/actions/workflows/ci-final.yml/badge.svg?branch=main" alt="CI final status">
+  <a href="https://github.com/ReviveCoding/media-search-ranking-reliability-framework/actions/workflows/ci-final.yml">
+    <img src="https://github.com/ReviveCoding/media-search-ranking-reliability-framework/actions/workflows/ci-final.yml/badge.svg?branch=main" alt="CI final status">
   </a>
 </p>
 

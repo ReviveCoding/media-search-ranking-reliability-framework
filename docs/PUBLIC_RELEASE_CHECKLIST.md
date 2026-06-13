@@ -13,7 +13,7 @@
 ## Suggested GitHub description
 
 ```text
-Reproducible multimodal media-search reliability framework for hybrid retrieval, LambdaRank, slice-aware evaluation, calibration, latency, and frozen release contracts.
+Reproducible media-search framework for hybrid retrieval, LambdaRank reranking, personalization, slice-aware evaluation, calibration, latency, and frozen release contracts.
 ```
 
 ## Suggested topics
@@ -37,7 +37,7 @@ python
 Upload `docs/assets/social-preview.png` through:
 
 ```text
-Repository → Settings → Social preview → Edit → Upload an image
+Repository â†’ Settings â†’ Social preview â†’ Edit â†’ Upload an image
 ```
 
 ## GitHub settings

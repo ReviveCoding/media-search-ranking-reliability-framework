@@ -1,5 +1,5 @@
 param(
-    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework"
+    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework"
 )
 
 $ErrorActionPreference = "Stop"

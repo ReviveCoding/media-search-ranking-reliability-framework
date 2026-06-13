@@ -1,6 +1,6 @@
-﻿[CmdletBinding()]
+[CmdletBinding()]
 param(
-    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework",
+    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework",
     [string]$DatasetPath = "C:\Users\bjw-0\Downloads\Project_Data\ml-10m",
     [switch]$RecreateVenv,
     [switch]$RunFull,

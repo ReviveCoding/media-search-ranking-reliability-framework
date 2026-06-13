@@ -1,9 +1,9 @@
 [CmdletBinding()]
 param(
-    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework",
+    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework",
     [string]$MovieLensPath = "C:\Users\bjw-0\Downloads\Project_Data\ml-10m",
-    [string]$TagGenomeEnrichment = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework\data\processed\tag_genome_enrichment.csv",
-    [string]$ImdbEnrichment = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework\data\processed\imdb_enrichment.csv",
+    [string]$TagGenomeEnrichment = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework\data\processed\tag_genome_enrichment.csv",
+    [string]$ImdbEnrichment = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework\data\processed\imdb_enrichment.csv",
     [switch]$SkipRankerTuning,
     [switch]$RunFull,
     [switch]$Resume

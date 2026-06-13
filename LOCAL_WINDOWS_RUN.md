@@ -16,7 +16,7 @@ Open PowerShell:
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass
 
-& "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework\scripts\run_windows_local.ps1" `
+& "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework\scripts\run_windows_local.ps1" `
   -Variant 10m `
   -Profile quick `
   -Install
@@ -26,7 +26,7 @@ The helper uses:
 
 ```text
 Repo:
-C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework
+C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework
 
 10M:
 C:\Users\bjw-0\Downloads\Project_Data\ml-10m
@@ -43,7 +43,7 @@ It supports extracted files at the specified directory or within a nested child 
 ## Manual commands
 
 ```powershell
-cd "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework"
+cd "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework"
 
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1

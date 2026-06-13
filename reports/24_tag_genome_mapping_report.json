@@ -5,5 +5,5 @@
   "scores_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\ml-20m\\genome-scores.csv",
   "tags_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\ml-20m\\genome-tags.csv",
   "movies_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\ml-20m\\movies.csv",
-  "output": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\tag_genome_enrichment.csv"
+  "output": "C:\\Users\\bjw-0\\Downloads\\media-search-ranking-reliability-framework\\data\\processed\\tag_genome_enrichment.csv"
 }

@@ -15,7 +15,7 @@ This upgrade improves real MovieLens ranking experiments without changing the ev
 ## Quick run
 
 ```powershell
-cd "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework"
+cd "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework"
 Set-ExecutionPolicy -Scope Process Bypass -Force
 Unblock-File ".\run_movieLens_frozen_quality_ablation.ps1"
 .\run_movieLens_frozen_quality_ablation.ps1

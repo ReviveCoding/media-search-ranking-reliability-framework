@@ -5,7 +5,7 @@ param(
     [ValidateSet("quick", "full")]
     [string]$Profile = "quick",
 
-    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-multimodal-discovery-reliability-framework",
+    [string]$RepoPath = "C:\Users\bjw-0\Downloads\media-search-ranking-reliability-framework",
     [string]$ProjectDataRoot = "C:\Users\bjw-0\Downloads\Project_Data",
 
     [switch]$Install,

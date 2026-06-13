@@ -4,5 +4,5 @@
   "coverage": 0.6131,
   "basics_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\IMDb Non-Commercial Datasets\\title.basics.tsv.gz",
   "ratings_file": "C:\\Users\\bjw-0\\Downloads\\Project_Data\\IMDb Non-Commercial Datasets\\title.ratings.tsv.gz",
-  "output": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\processed\\imdb_enrichment.csv"
+  "output": "C:\\Users\\bjw-0\\Downloads\\media-search-ranking-reliability-framework\\data\\processed\\imdb_enrichment.csv"
 }

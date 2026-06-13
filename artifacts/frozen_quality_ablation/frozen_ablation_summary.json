@@ -45,7 +45,7 @@
   "legacy_profile_selection_run": "core_compact",
   "replay_diagnostics_status": "legacy_not_strictly_comparable",
   "strict_gpu_replay_claim": false,
-  "manifest_dir": "C:\\Users\\bjw-0\\Downloads\\media-search-multimodal-discovery-reliability-framework\\data\\benchmarks\\ml10m_frozen_v1",
+  "manifest_dir": "C:\\Users\\bjw-0\\Downloads\\media-search-ranking-reliability-framework\\data\\benchmarks\\ml10m_frozen_v1",
   "strict_contract_runs": [
     "core_champion_replay",
     "tag_genome_feature_only",
