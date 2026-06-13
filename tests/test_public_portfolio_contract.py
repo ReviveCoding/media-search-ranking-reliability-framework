@@ -27,6 +27,24 @@ def test_public_readme_contract() -> None:
 
     assert "\u2192" in readme
 
+    finalization_generator = (
+        ROOT / "scripts" / "finalize_repository.py"
+    ).read_text(encoding="utf-8")
+
+    assert "multimodal media-search" not in finalization_generator
+    assert (
+        "media-search retrieval, ranking, and reliability framework"
+        in finalization_generator
+    )
+    assert (
+        "media-search retrieval and ranking framework"
+        in finalization_generator
+    )
+    assert (
+        "## Frozen benchmark text-encoding limitation"
+        in finalization_generator
+    )
+
     for public_path in public_text_paths:
         content = public_path.read_text(encoding="utf-8")
 

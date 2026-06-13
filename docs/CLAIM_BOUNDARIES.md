@@ -2,7 +2,7 @@
 
 ## Supported claims
 
-- Built a runnable multimodal media-search and ranking-quality framework with frozen benchmark contracts, ranking evaluation, slice guardrails, calibration, latency reporting, and automated release checks.
+- Built a runnable media-search retrieval, ranking, and reliability framework with frozen benchmark contracts, ranking evaluation, slice guardrails, calibration, latency reporting, and automated release checks.
 - Promoted `combined_feature_only` over the canonical `core_champion_replay` baseline under the same frozen manifest and query-group split.
 - Improved NDCG@10 from `0.312599` to `0.322034`, a `+3.02%` relative improvement in the canonical comparison.
 - Preserved legacy profile results as historical context while explicitly disabling a strict replay claim when configuration fingerprints do not match.

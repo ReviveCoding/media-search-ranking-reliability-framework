@@ -293,7 +293,7 @@ def claim_boundaries_document(data: ReleaseData) -> str:
 
 ## Supported claims
 
-- Built a runnable multimodal media-search and ranking-quality framework with frozen benchmark contracts, ranking evaluation, slice guardrails, calibration, latency reporting, and automated release checks.
+- Built a runnable media-search retrieval, ranking, and reliability framework with frozen benchmark contracts, ranking evaluation, slice guardrails, calibration, latency reporting, and automated release checks.
 - Promoted `combined_feature_only` over the canonical `core_champion_replay` baseline under the same frozen manifest and query-group split.
 - Improved NDCG@10 from `{float(baseline["ndcg_at_10"]):.6f}` to `{float(champion["ndcg_at_10"]):.6f}`, a `{change:+.2f}%` relative improvement in the canonical comparison.
 - Preserved legacy profile results as historical context while explicitly disabling a strict replay claim when configuration fingerprints do not match.
@@ -310,7 +310,16 @@ def claim_boundaries_document(data: ReleaseData) -> str:
 
 ## Recommended résumé wording
 
-“Built a reproducible multimodal media-search ranking framework with frozen data/split contracts, LambdaRank evaluation, slice-regression guardrails, calibration and latency diagnostics; promoted a combined metadata feature variant that improved canonical NDCG@10 by {change:.2f}% while preserving explicit GPU replay and launch-readiness boundaries.”
+“Built a reproducible media-search retrieval and ranking framework with frozen data/split contracts, LambdaRank evaluation, slice-regression guardrails, calibration and latency diagnostics; promoted a combined metadata feature variant that improved canonical NDCG@10 by {change:.2f}% while preserving explicit GPU replay and launch-readiness boundaries.”
+
+## Frozen benchmark text-encoding limitation
+
+`data/benchmarks/ml10m_frozen_v1/queries.csv` preserves a small
+number of legacy movie-title encoding artifacts in anchor-query text.
+They are retained in benchmark version `ml10m_frozen_v1` to preserve
+the committed comparison contract. Correcting them requires a
+versioned benchmark rebuild and recomputation of the frozen results.
+
 """
 
 
