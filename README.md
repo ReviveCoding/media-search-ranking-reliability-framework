@@ -1,4 +1,4 @@
-# v10.4 Aggregation Contract Hotfix
+﻿# Multimodal Media Search Reliability Framework
 
 <!-- PUBLIC_PORTFOLIO_START -->
 <p align="center">
@@ -21,7 +21,7 @@ This repository is built around a practical question: **how do you improve searc
 |---|---:|
 | Promoted champion | `combined_feature_only` |
 | Canonical baseline | `core_champion_replay` |
-| Canonical NDCG@10 | `0.312599` → `0.322034` |
+| Canonical NDCG@10 | `0.312599` â†’ `0.322034` |
 | Relative NDCG@10 change | `+3.02%` |
 | Regression tests | `60 passed` |
 | Frozen contract | `validated` |
@@ -88,10 +88,11 @@ This patch fixes aggregation when legacy core profile runs were created before t
 
 - **Promoted champion:** `combined_feature_only`
 - **Canonical baseline:** `core_champion_replay`
-- **NDCG@10:** `0.312599` → `0.322034` (+3.02%)
+- **NDCG@10:** `0.312599` â†’ `0.322034` (+3.02%)
 - **Frozen contract:** validated for the canonical baseline and enrichment variants
 - **Legacy replay disclosure:** `legacy_not_strictly_comparable`; no strict GPU replay claim
 - **Launch decision:** `ITERATE`
 
 See [final results](docs/FINAL_RESULTS.md), [reproducibility](docs/REPRODUCIBILITY.md), and [claim boundaries](docs/CLAIM_BOUNDARIES.md).
 <!-- FINAL_RESULTS_END -->
+
