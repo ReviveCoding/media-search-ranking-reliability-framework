@@ -11,7 +11,7 @@
   </a>
 </p>
 
-A reproducible multimodal media-search reliability framework for **query understanding, hybrid retrieval, learning-to-rank, metadata enrichment, slice-aware evaluation, calibration, latency analysis, and frozen release contracts**.
+A reproducible media-search retrieval and ranking framework for **query understanding, hybrid retrieval, LambdaRank reranking, personalization, metadata enrichment, slice-aware evaluation, calibration, latency analysis, and frozen release contracts**.
 
 This repository is built around a practical question: **how do you improve search relevance without losing control of comparability, slice regressions, latency, or claim validity?**
 
@@ -21,7 +21,7 @@ This repository is built around a practical question: **how do you improve searc
 |---|---:|
 | Promoted champion | `combined_feature_only` |
 | Canonical baseline | `core_champion_replay` |
-| Canonical NDCG@10 | `0.312599` â†’ `0.322034` |
+| Canonical NDCG@10 | `0.312599` Ã¢â€ â€™ `0.322034` |
 | Relative NDCG@10 change | `+3.02%` |
 | Regression tests | `60 passed` |
 | Frozen contract | `validated` |
@@ -77,7 +77,9 @@ strict_replay_claim=False
 
 <!-- PUBLIC_PORTFOLIO_END -->
 
-This patch fixes aggregation when legacy core profile runs were created before the canonical frozen split contract.
+## Frozen release-contract design
+
+The aggregation layer supports legacy core profile runs created before the canonical frozen split contract while preserving strict comparison boundaries.
 
 - Strict exact contract checks remain required for `core_champion_replay`, `tag_genome_feature_only`, `imdb_feature_only`, and `combined_feature_only`.
 - Legacy `core_conservative`, `core_balanced`, and `core_compact` runs remain visible for historical profile-selection context but cannot block aggregation or champion promotion.
@@ -88,7 +90,7 @@ This patch fixes aggregation when legacy core profile runs were created before t
 
 - **Promoted champion:** `combined_feature_only`
 - **Canonical baseline:** `core_champion_replay`
-- **NDCG@10:** `0.312599` â†’ `0.322034` (+3.02%)
+- **NDCG@10:** `0.312599` Ã¢â€ â€™ `0.322034` (+3.02%)
 - **Frozen contract:** validated for the canonical baseline and enrichment variants
 - **Legacy replay disclosure:** `legacy_not_strictly_comparable`; no strict GPU replay claim
 - **Launch decision:** `ITERATE`
