@@ -19,4 +19,12 @@
 
 ## Recommended résumé wording
 
-“Built a reproducible multimodal media-search ranking framework with frozen data/split contracts, LambdaRank evaluation, slice-regression guardrails, calibration and latency diagnostics; promoted a combined metadata feature variant that improved canonical NDCG@10 by 3.02% while preserving explicit GPU replay and launch-readiness boundaries.”
+“Built a reproducible media-search retrieval and ranking framework with frozen data/split contracts, LambdaRank evaluation, slice-regression guardrails, calibration and latency diagnostics; promoted a combined metadata feature variant that improved canonical NDCG@10 by 3.02% while preserving explicit GPU replay and launch-readiness boundaries.”
+
+## Frozen benchmark text-encoding limitation
+
+`data/benchmarks/ml10m_frozen_v1/queries.csv` preserves a small
+number of legacy movie-title encoding artifacts in anchor-query text.
+They are retained in benchmark version `ml10m_frozen_v1` to preserve
+the committed comparison contract. Correcting them requires a
+versioned benchmark rebuild and recomputation of the frozen results.

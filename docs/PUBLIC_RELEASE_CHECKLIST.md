@@ -37,7 +37,7 @@ python
 Upload `docs/assets/social-preview.png` through:
 
 ```text
-Repository â†’ Settings â†’ Social preview â†’ Edit â†’ Upload an image
+Repository → Settings → Social preview → Edit → Upload an image
 ```
 
 ## GitHub settings

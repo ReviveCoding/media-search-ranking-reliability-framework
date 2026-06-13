@@ -12,6 +12,29 @@ def test_public_readme_contract() -> None:
     assert "0.312599" in readme
     assert "0.322034" in readme
 
+    public_text_paths = [
+        ROOT / "README.md",
+        ROOT / "SECURITY.md",
+        *sorted((ROOT / "docs").glob("*.md")),
+    ]
+
+    forbidden = (
+        "\u00c3\u00a2",
+        "\u00e2\u2020\u2019",
+        "\u00e2\u20ac",
+        "\ufffd",
+    )
+
+    assert "\u2192" in readme
+
+    for public_path in public_text_paths:
+        content = public_path.read_text(encoding="utf-8")
+
+        assert not any(
+            token in content
+            for token in forbidden
+        ), f"Mojibake detected in {public_path}"
+
 
 def test_public_assets_exist() -> None:
     for relative in [

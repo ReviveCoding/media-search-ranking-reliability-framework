@@ -21,7 +21,7 @@ This repository is built around a practical question: **how do you improve searc
 |---|---:|
 | Promoted champion | `combined_feature_only` |
 | Canonical baseline | `core_champion_replay` |
-| Canonical NDCG@10 | `0.312599` Ã¢â€ â€™ `0.322034` |
+| Canonical NDCG@10 | `0.312599` → `0.322034` |
 | Relative NDCG@10 change | `+3.02%` |
 | Regression tests | `60 passed` |
 | Frozen contract | `validated` |
@@ -90,7 +90,7 @@ The aggregation layer supports legacy core profile runs created before the canon
 
 - **Promoted champion:** `combined_feature_only`
 - **Canonical baseline:** `core_champion_replay`
-- **NDCG@10:** `0.312599` Ã¢â€ â€™ `0.322034` (+3.02%)
+- **NDCG@10:** `0.312599` → `0.322034` (+3.02%)
 - **Frozen contract:** validated for the canonical baseline and enrichment variants
 - **Legacy replay disclosure:** `legacy_not_strictly_comparable`; no strict GPU replay claim
 - **Launch decision:** `ITERATE`
