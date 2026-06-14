@@ -17,7 +17,7 @@ The command reads committed benchmark and release artifacts and prints one froze
 Expected after this polish:
 
 ```text
-60 passed
+61 passed
 ```
 
 ## Contract checks

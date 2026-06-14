@@ -18,6 +18,7 @@ def main() -> None:
     requirements = root / "requirements.txt"
     if requirements.is_file():
         run("install", "-r", str(requirements))
+        return
 
     install_editable = (root / "setup.py").is_file() or (root / "setup.cfg").is_file()
     pyproject = root / "pyproject.toml"

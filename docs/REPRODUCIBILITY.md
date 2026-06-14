@@ -43,3 +43,21 @@ The canonical promotion comparison requires exact agreement on the frozen manife
 - Promoted champion is `combined_feature_only`
 - Canonical baseline is `core_champion_replay`
 - Legacy strict replay claim remains disabled
+
+## Pinned Python 3.11 dependency contract
+
+The package metadata in `pyproject.toml` defines supported dependency
+ranges. Reproducibility and CI additionally use
+`constraints/py311.txt`, which pins the dependency set validated with
+Python 3.11.9.
+
+Install the validated environment with:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+Update the constraint file only after the cross-process reproducibility
+replay, full test suite, public portfolio contract, and frozen release
+contract all pass.

@@ -1,2 +1,5 @@
-# Compatibility installer. pyproject.toml is the single dependency source of truth.
+# Reproducible Python 3.11 installer.
+# pyproject.toml defines supported dependency ranges.
+# constraints/py311.txt pins the validated CI environment.
+-c constraints/py311.txt
 -e .[dev]

@@ -12,7 +12,7 @@ Verified identical outputs:
 - model-quality metrics excluding wall-clock latency
 - row-level test predictions within absolute tolerance `1e-12`
 
-Reference NDCG@10: `0.525769`
-Reference ranker lift: `+0.128307`
+Reference NDCG@10: `0.721586`
+Reference ranker lift: `+0.097400`
 
 Latency is intentionally excluded because wall-clock measurements are environment dependent.

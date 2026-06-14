@@ -23,7 +23,7 @@ This repository is built around a practical question: **how do you improve searc
 | Canonical baseline | `core_champion_replay` |
 | Canonical NDCG@10 | `0.312599` → `0.322034` |
 | Relative NDCG@10 change | `+3.02%` |
-| Regression tests | `60 passed` |
+| Regression tests | `61 passed` |
 | Frozen contract | `validated` |
 | Committed-HEAD clean checkout | `PASS` |
 | Strict legacy replay claim | `false` |
@@ -51,7 +51,7 @@ The result is intentionally framed as a **canonical frozen-contract improvement*
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e .
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe scripts\public_demo.py
 ```

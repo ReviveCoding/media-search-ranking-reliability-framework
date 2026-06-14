@@ -63,6 +63,18 @@ def _stable_summary(summary: dict) -> dict:
     summary = json.loads(json.dumps(summary))
     summary.pop("reports_dir", None)
     summary.pop("artifacts_dir", None)
+
+    # Preserve artifact identity while removing the run-specific
+    # temporary directory prefix.
+    artifact_path = summary.get(
+        "candidate_diagnostics_artifact"
+    )
+
+    if artifact_path:
+        summary["candidate_diagnostics_artifact"] = (
+            Path(str(artifact_path)).name
+        )
+
     metrics = summary.get("metrics", {})
     metrics.pop("p95_latency_ms", None)
     return summary
