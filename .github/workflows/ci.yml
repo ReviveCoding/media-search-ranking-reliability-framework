@@ -56,6 +56,8 @@ jobs:
       - name: Install built wheel in an isolated virtual environment
         shell: bash
         run: |
+          set -euxo pipefail
+          trap 'echo "Wheel smoke failed at line $LINENO" >&2' ERR
           python -m venv .wheel-smoke
           .wheel-smoke/bin/python -m pip install --upgrade pip
           .wheel-smoke/bin/python -m pip install dist/*.whl
