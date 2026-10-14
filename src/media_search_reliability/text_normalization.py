@@ -54,12 +54,12 @@ def canonical_tag(value: object) -> str:
     return text
 
 
-
 def canonical_genre_phrase(value: object) -> str:
     text = normalize_text(value)
     for source, target in sorted(_GENRE_ALIASES.items(), key=lambda x: -len(x[0])):
         text = re.sub(rf"\b{re.escape(source)}\b", target.replace("-", " "), text)
     return re.sub(r"\s+", " ", text).strip()
+
 
 def canonical_phrase(value: object) -> str:
     text = normalize_text(value)
@@ -81,9 +81,11 @@ def split_pipe(value: object, *, kind: str = "tag") -> list[str]:
 
 def canonical_join(values: Iterable[object], *, kind: str = "tag") -> str:
     fn = canonical_genre if kind == "genre" else canonical_tag
-    out = []
+    out: list[str] = []
+    seen: set[str] = set()
     for value in values:
         item = fn(value)
-        if item and item not in out:
+        if item and item not in seen:
+            seen.add(item)
             out.append(item)
     return "|".join(out)

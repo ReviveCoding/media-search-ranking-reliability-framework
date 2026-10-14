@@ -108,7 +108,14 @@ class QueryUnderstanding:
             query_type = "adhoc"
 
         genre_normalized = canonical_genre_phrase(query)
-        genre_key = next((genre for genre in self.genres if re.search(rf"\b{re.escape(genre.replace(chr(45), chr(32)))}\b", genre_normalized)), "")
+        genre_key = next(
+            (
+                genre
+                for genre in self.genres
+                if re.search(rf"\b{re.escape(genre.replace('-', ' '))}\b", genre_normalized)
+            ),
+            "",
+        )
         target_genre = self.genre_display.get(genre_key, genre_key)
         mood_word = next((mood for mood in MOOD_TO_TAG if _contains_phrase(normalized, mood)), "")
         target_mood_tag = canonical_tag(MOOD_TO_TAG.get(mood_word, ""))
