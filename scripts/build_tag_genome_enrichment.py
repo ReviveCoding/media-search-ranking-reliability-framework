@@ -30,7 +30,13 @@ def find_file(root: Path, names: list[str]) -> Path | None:
 
 def read_movies(path: Path) -> pd.DataFrame:
     if path.suffix.lower() == ".dat":
-        return pd.read_csv(path, sep="::", engine="python", names=["movieId", "title", "genres"], encoding="latin-1")
+        return pd.read_csv(
+            path,
+            sep="::",
+            engine="python",
+            names=["movieId", "title", "genres"],
+            encoding="latin-1",
+        )
     return pd.read_csv(path).rename(columns={"movie_id": "movieId"})
 
 
@@ -46,14 +52,26 @@ def main():
 
     root = Path(args.genome_dir)
     catalog = pd.read_csv(args.catalog)
-    scores_path = find_file(root, ["genome-scores.csv", "genome_scores.csv", "tag_relevance.dat"])
-    tags_path = find_file(root, ["genome-tags.csv", "genome_tags.csv", "tags.json", "tags.csv"])
+    scores_path = find_file(
+        root, ["genome-scores.csv", "genome_scores.csv", "tag_relevance.dat"]
+    )
+    tags_path = find_file(
+        root, ["genome-tags.csv", "genome_tags.csv", "tags.json", "tags.csv"]
+    )
     movies_path = find_file(root, ["movies.csv", "movies.dat"])
     if not scores_path or not tags_path:
-        raise FileNotFoundError("Could not locate genome scores/tags files under the supplied directory")
+        raise FileNotFoundError(
+            "Could not locate genome scores/tags files under the supplied directory"
+        )
 
     scores = pd.read_csv(scores_path)
-    scores = scores.rename(columns={"movieId": "genome_movie_id", "movie_id": "genome_movie_id", "tagId": "tag_id", "tagId": "tag_id"})
+    scores = scores.rename(
+        columns={
+            "movieId": "genome_movie_id",
+            "movie_id": "genome_movie_id",
+            "tagId": "tag_id",
+        }
+    )
     if "tag_id" not in scores.columns and "tagId" in scores.columns:
         scores = scores.rename(columns={"tagId": "tag_id"})
     tags = pd.read_csv(tags_path)
@@ -68,25 +86,58 @@ def main():
         gm["year"] = gm["title"].map(year_from_title)
         cat = catalog[["movie_id", "clean_title", "year"]].copy()
         cat["norm_title"] = cat["clean_title"].map(norm_title)
-        mapping = cat.merge(gm[["movieId", "norm_title", "year"]], on=["norm_title", "year"], how="left")
+        mapping = cat.merge(
+            gm[["movieId", "norm_title", "year"]], on=["norm_title", "year"], how="left"
+        )
         mapping = mapping.rename(columns={"movieId": "genome_movie_id"})
-        mapping["mapping_method"] = mapping["genome_movie_id"].notna().map({True: "title_year", False: "unmatched"})
+        mapping["mapping_method"] = (
+            mapping["genome_movie_id"]
+            .notna()
+            .map({True: "title_year", False: "unmatched"})
+        )
     else:
-        overlap = set(catalog["movie_id"].astype(int)) & set(scores["genome_movie_id"].astype(int).unique())
+        overlap = set(catalog["movie_id"].astype(int)) & set(
+            scores["genome_movie_id"].astype(int).unique()
+        )
         mapping = catalog[["movie_id"]].copy()
-        mapping["genome_movie_id"] = mapping["movie_id"].where(mapping["movie_id"].isin(overlap))
-        mapping["mapping_method"] = mapping["genome_movie_id"].notna().map({True: "direct_id", False: "unmatched"})
+        mapping["genome_movie_id"] = mapping["movie_id"].where(
+            mapping["movie_id"].isin(overlap)
+        )
+        mapping["mapping_method"] = (
+            mapping["genome_movie_id"]
+            .notna()
+            .map({True: "direct_id", False: "unmatched"})
+        )
 
-    usable = scores[scores["relevance"] >= args.min_relevance].merge(tags[["tag_id", "tag"]], on="tag_id", how="left")
-    usable = usable.sort_values(["genome_movie_id", "relevance", "tag"], ascending=[True, False, True])
+    usable = scores[scores["relevance"] >= args.min_relevance].merge(
+        tags[["tag_id", "tag"]], on="tag_id", how="left"
+    )
+    usable = usable.sort_values(
+        ["genome_movie_id", "relevance", "tag"], ascending=[True, False, True]
+    )
     top = usable.groupby("genome_movie_id", sort=True).head(args.top_tags)
-    agg = top.groupby("genome_movie_id").agg(
-        tag_genome_text=("tag", lambda x: "|".join(str(v) for v in x if pd.notna(v))),
-        tag_genome_max_relevance=("relevance", "max"),
-        tag_genome_tag_count=("tag", "count"),
-    ).reset_index()
+    agg = (
+        top.groupby("genome_movie_id")
+        .agg(
+            tag_genome_text=(
+                "tag",
+                lambda x: "|".join(str(v) for v in x if pd.notna(v)),
+            ),
+            tag_genome_max_relevance=("relevance", "max"),
+            tag_genome_tag_count=("tag", "count"),
+        )
+        .reset_index()
+    )
     out = mapping.merge(agg, on="genome_movie_id", how="left")
-    out = out[["movie_id", "tag_genome_text", "tag_genome_max_relevance", "tag_genome_tag_count", "mapping_method"]]
+    out = out[
+        [
+            "movie_id",
+            "tag_genome_text",
+            "tag_genome_max_relevance",
+            "tag_genome_tag_count",
+            "mapping_method",
+        ]
+    ]
     out = out.rename(columns={"mapping_method": "tag_genome_mapping_method"})
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(args.output, index=False)

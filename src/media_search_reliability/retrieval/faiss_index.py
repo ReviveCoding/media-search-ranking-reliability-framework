@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
@@ -23,6 +24,7 @@ class VectorIndex:
             raise ValueError("Cannot fit an empty vector index")
         if importlib.util.find_spec("faiss") is not None:
             import faiss
+
             index = faiss.IndexFlatIP(emb.shape[1])
             if self.use_gpu_if_available and hasattr(faiss, "StandardGpuResources"):
                 try:
@@ -51,6 +53,16 @@ class VectorIndex:
         k = max(1, min(int(top_k), len(self.doc_ids)))
         if self.index is not None:
             scores, idxs = self.index.search(q, k)
-            return [[(self.doc_ids[int(i)], float(s)) for i, s in zip(row_i, row_s) if i >= 0] for row_s, row_i in zip(scores, idxs)]
+            return [
+                [
+                    (self.doc_ids[int(i)], float(s))
+                    for i, s in zip(row_i, row_s)
+                    if i >= 0
+                ]
+                for row_s, row_i in zip(scores, idxs)
+            ]
         distances, idxs = self.nn.kneighbors(q, n_neighbors=k)
-        return [[(self.doc_ids[int(i)], float(1 - d)) for i, d in zip(row_i, row_d)] for row_d, row_i in zip(distances, idxs)]
+        return [
+            [(self.doc_ids[int(i)], float(1 - d)) for i, d in zip(row_i, row_d)]
+            for row_d, row_i in zip(distances, idxs)
+        ]

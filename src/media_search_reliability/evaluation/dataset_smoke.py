@@ -4,30 +4,38 @@ import argparse
 import json
 import shutil
 import tempfile
+from collections.abc import Iterable
 from importlib import resources
 from pathlib import Path
-from typing import Iterable
 
 import pandas as pd
 import yaml
 
-from media_search_reliability.data_ingestion.synthetic_data import generate_synthetic_movielens
+from media_search_reliability.data_ingestion.synthetic_data import (
+    generate_synthetic_movielens,
+)
 from media_search_reliability.pipeline import run_pipeline
 
 SUPPORTED_FORMATS = ("dat", "csv")
 
 
-def _write_dat_fixture(raw_dir: Path, movies: pd.DataFrame, ratings: pd.DataFrame) -> None:
+def _write_dat_fixture(
+    raw_dir: Path, movies: pd.DataFrame, ratings: pd.DataFrame
+) -> None:
     """Write a MovieLens 1M-compatible fixture without tags.dat.
 
     Official MovieLens 1M uses movies.dat, ratings.dat, and users.dat. The
     absence of tags.dat is intentional and validates the framework's no-tag path.
     """
     raw_dir.mkdir(parents=True, exist_ok=True)
-    with (raw_dir / "movies.dat").open("w", encoding="latin-1", errors="replace") as handle:
+    with (raw_dir / "movies.dat").open(
+        "w", encoding="latin-1", errors="replace"
+    ) as handle:
         for row in movies.sort_values("movie_id").itertuples(index=False):
             handle.write(f"{int(row.movie_id)}::{row.title}::{row.genres}\n")
-    with (raw_dir / "ratings.dat").open("w", encoding="latin-1", errors="replace") as handle:
+    with (raw_dir / "ratings.dat").open(
+        "w", encoding="latin-1", errors="replace"
+    ) as handle:
         ordered = ratings.sort_values(["user_id", "movie_id"], kind="mergesort")
         for index, row in enumerate(ordered.itertuples(index=False)):
             rating = int(min(5, max(1, round(float(row.rating)))))
@@ -59,7 +67,9 @@ def _write_csv_fixture(
 
 
 def _load_packaged_config() -> dict:
-    resource = resources.files("media_search_reliability.configs").joinpath("pipeline.yaml")
+    resource = resources.files("media_search_reliability.configs").joinpath(
+        "pipeline.yaml"
+    )
     with resources.as_file(resource) as config_path:
         return yaml.safe_load(config_path.read_text(encoding="utf-8"))
 
@@ -154,7 +164,9 @@ def run_dataset_smoke(
         work_root.mkdir(parents=True, exist_ok=True)
         temporary_context = None
     else:
-        temporary_context = tempfile.TemporaryDirectory(prefix="media-search-dataset-smoke-")
+        temporary_context = tempfile.TemporaryDirectory(
+            prefix="media-search-dataset-smoke-"
+        )
         work_root = Path(temporary_context.name)
 
     n_movies = 180 if quick else 260

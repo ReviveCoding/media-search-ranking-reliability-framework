@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 from fastapi.testclient import TestClient
+
 from media_search_reliability.api.app import app
 
 
@@ -70,7 +71,9 @@ def main() -> None:
             },
         )
         assert similar.status_code == 200, similar.text
-        assert all(int(item["movie_id"]) != anchor_id for item in similar.json()["results"])
+        assert all(
+            int(item["movie_id"]) != anchor_id for item in similar.json()["results"]
+        )
 
         batch = client.post(
             "/batch_search",
@@ -88,7 +91,9 @@ def main() -> None:
         assert batch.status_code == 200, batch.text
         batch_payload = batch.json()
         assert len(batch_payload["responses"]) == 2
-        assert all(len(response["results"]) > 0 for response in batch_payload["responses"])
+        assert all(
+            len(response["results"]) > 0 for response in batch_payload["responses"]
+        )
 
         gate = client.get("/launch_gate")
         assert gate.status_code == 200, gate.text

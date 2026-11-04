@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import hashlib
-from pathlib import Path
 import shutil
 import zipfile
+from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
@@ -38,7 +38,9 @@ def safe_extract(
             raise ValueError(f"Corrupt zip member: {corrupt}")
         members = archive.infolist()
         if len(members) > max_members:
-            raise ValueError(f"Archive has too many members: {len(members)} > {max_members}")
+            raise ValueError(
+                f"Archive has too many members: {len(members)} > {max_members}"
+            )
         total_size = sum(max(0, int(member.file_size)) for member in members)
         if total_size > max_uncompressed_bytes:
             raise ValueError(
@@ -53,7 +55,12 @@ def safe_extract(
         archive.extractall(destination)
 
 
-def download(url: str, path: Path, timeout: int = 60, user_agent: str = "media-search-reliability/0.5") -> None:
+def download(
+    url: str,
+    path: Path,
+    timeout: int = 60,
+    user_agent: str = "media-search-reliability/0.5",
+) -> None:
     parsed = urlparse(url)
     if parsed.scheme != "https":
         raise ValueError("Only HTTPS dataset downloads are allowed.")
@@ -62,7 +69,10 @@ def download(url: str, path: Path, timeout: int = 60, user_agent: str = "media-s
     partial.unlink(missing_ok=True)
     request = Request(url, headers={"User-Agent": user_agent})
     try:
-        with urlopen(request, timeout=timeout) as response, partial.open("wb") as output:
+        with (
+            urlopen(request, timeout=timeout) as response,
+            partial.open("wb") as output,
+        ):
             shutil.copyfileobj(response, output)
         partial.replace(path)
     except Exception:
@@ -71,7 +81,9 @@ def download(url: str, path: Path, timeout: int = 60, user_agent: str = "media-s
 
 
 def flatten_movielens_directory(out: Path) -> None:
-    subdirs = sorted(path for path in out.iterdir() if path.is_dir() and path.name.startswith("ml-"))
+    subdirs = sorted(
+        path for path in out.iterdir() if path.is_dir() and path.name.startswith("ml-")
+    )
     for subdir in subdirs:
         for source in sorted(subdir.iterdir(), key=lambda p: p.name):
             target = out / source.name

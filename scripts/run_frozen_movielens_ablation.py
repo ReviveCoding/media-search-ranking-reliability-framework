@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import argparse
 import copy
-import json
 import hashlib
+import json
 import math
 import os
 import subprocess
@@ -12,8 +12,6 @@ from pathlib import Path
 
 import pandas as pd
 import yaml
-
-
 
 RANKER_PROFILES = {
     "conservative": {
@@ -63,7 +61,9 @@ DEFAULT_REPLAY_ATOL = 1e-3
 DEFAULT_REPLAY_RTOL = 1e-3
 
 
-def _replay_diagnostics(core_original: pd.Series, core_replay: pd.Series, *, atol: float, rtol: float) -> dict:
+def _replay_diagnostics(
+    core_original: pd.Series, core_replay: pd.Series, *, atol: float, rtol: float
+) -> dict:
     metrics: dict[str, dict] = {}
     passed = True
     for name in REPLAY_METRICS:
@@ -95,7 +95,9 @@ CANDIDATE_QUOTAS = {
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Frozen MovieLens quality and metadata ablation")
+    parser = argparse.ArgumentParser(
+        description="Frozen MovieLens quality and metadata ablation"
+    )
     parser.add_argument("--config", default="configs/pipeline_external_gpu_quick.yaml")
     parser.add_argument("--movielens-dir", required=True)
     parser.add_argument("--tag-genome-enrichment")
@@ -114,24 +116,39 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def _write_config(base: dict, path: Path, *, variant: str, output_root: Path, reports_root: Path,
-                  manifest_dir: Path, manifest_mode: str, profile: dict,
-                  tag_path: str | None, imdb_path: str | None, args: argparse.Namespace) -> None:
+def _write_config(
+    base: dict,
+    path: Path,
+    *,
+    variant: str,
+    output_root: Path,
+    reports_root: Path,
+    manifest_dir: Path,
+    manifest_mode: str,
+    profile: dict,
+    tag_path: str | None,
+    imdb_path: str | None,
+    args: argparse.Namespace,
+) -> None:
     cfg = copy.deepcopy(base)
     cfg.setdefault("project", {})["output_dir"] = str((output_root / variant).resolve())
     cfg["project"]["reports_dir"] = str((reports_root / variant).resolve())
-    cfg.setdefault("data", {})["movielens_raw_dir"] = str(Path(args.movielens_dir).resolve())
+    cfg.setdefault("data", {})["movielens_raw_dir"] = str(
+        Path(args.movielens_dir).resolve()
+    )
     cfg.setdefault("queries", {})["num_queries"] = int(args.num_queries)
     cfg["queries"]["candidates_per_query"] = int(args.candidates_per_query)
     cfg.setdefault("retrieval", {})["top_k"] = 80
     cfg["retrieval"]["candidate_quotas"] = CANDIDATE_QUOTAS
     cfg.setdefault("ranking", {}).update(profile)
     cfg["ranking"]["eval_at"] = [5, 10]
-    cfg.setdefault("benchmark", {}).update({
-        "manifest_dir": str(manifest_dir.resolve()),
-        "manifest_mode": manifest_mode,
-        "require_catalog_fingerprint": True,
-    })
+    cfg.setdefault("benchmark", {}).update(
+        {
+            "manifest_dir": str(manifest_dir.resolve()),
+            "manifest_mode": manifest_mode,
+            "require_catalog_fingerprint": True,
+        }
+    )
     cfg["enrichment"] = {
         "mode": "feature_only",
         "tag_genome_enrichment_path": tag_path,
@@ -146,14 +163,33 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _run_variant(base: dict, temp_dir: Path, *, name: str, output_root: Path, reports_root: Path,
-                 manifest_dir: Path, manifest_mode: str, profile: dict,
-                 tag_path: str | None, imdb_path: str | None, args: argparse.Namespace) -> dict:
+def _run_variant(
+    base: dict,
+    temp_dir: Path,
+    *,
+    name: str,
+    output_root: Path,
+    reports_root: Path,
+    manifest_dir: Path,
+    manifest_mode: str,
+    profile: dict,
+    tag_path: str | None,
+    imdb_path: str | None,
+    args: argparse.Namespace,
+) -> dict:
     cfg_path = temp_dir / f"{name}.yaml"
     _write_config(
-        base, cfg_path, variant=name, output_root=output_root, reports_root=reports_root,
-        manifest_dir=manifest_dir, manifest_mode=manifest_mode, profile=profile,
-        tag_path=tag_path, imdb_path=imdb_path, args=args,
+        base,
+        cfg_path,
+        variant=name,
+        output_root=output_root,
+        reports_root=reports_root,
+        manifest_dir=manifest_dir,
+        manifest_mode=manifest_mode,
+        profile=profile,
+        tag_path=tag_path,
+        imdb_path=imdb_path,
+        args=args,
     )
 
     variant_dir = (output_root / name).resolve()
@@ -162,7 +198,11 @@ def _run_variant(base: dict, temp_dir: Path, *, name: str, output_root: Path, re
     config_fingerprint = _sha256(cfg_path)
 
     if args.resume and summary_path.is_file():
-        stored_fingerprint = fingerprint_path.read_text(encoding="utf-8").strip() if fingerprint_path.is_file() else None
+        stored_fingerprint = (
+            fingerprint_path.read_text(encoding="utf-8").strip()
+            if fingerprint_path.is_file()
+            else None
+        )
         # v10 results created before this hotfix have no sidecar. They are safe to reuse
         # only when the user explicitly requested --resume. New runs always persist one.
         if stored_fingerprint is None or stored_fingerprint == config_fingerprint:
@@ -176,12 +216,21 @@ def _run_variant(base: dict, temp_dir: Path, *, name: str, output_root: Path, re
     env.setdefault("TOKENIZERS_PARALLELISM", "false")
 
     runner = Path(__file__).resolve().with_name("run_pipeline.py")
-    command = [sys.executable, str(runner), "--config", str(cfg_path.resolve()), "--mode", "movielens"]
+    command = [
+        sys.executable,
+        str(runner),
+        "--config",
+        str(cfg_path.resolve()),
+        "--mode",
+        "movielens",
+    ]
     print(f"[variant] starting isolated process: {name}", flush=True)
     subprocess.run(command, check=True, cwd=Path.cwd(), env=env)
 
     if not summary_path.is_file():
-        raise FileNotFoundError(f"Variant completed without eval_summary.json: {summary_path}")
+        raise FileNotFoundError(
+            f"Variant completed without eval_summary.json: {summary_path}"
+        )
     fingerprint_path.write_text(config_fingerprint + "\n", encoding="utf-8")
     print(f"[variant] completed and released process memory: {name}", flush=True)
     return json.loads(summary_path.read_text(encoding="utf-8"))
@@ -207,9 +256,15 @@ def _row(name: str, summary: dict, *, profile: str, variant: str) -> dict:
         "ece": metrics.get("ece"),
         "p95_latency_ms": metrics.get("p95_latency_ms"),
         "launch_decision": summary.get("launch_decision"),
-        "tag_genome_applied": summary.get("enrichment_diagnostics", {}).get("tag_genome_applied", False),
-        "imdb_applied": summary.get("enrichment_diagnostics", {}).get("imdb_applied", False),
-        "retrieval_text_changed": summary.get("enrichment_diagnostics", {}).get("retrieval_text_changed", False),
+        "tag_genome_applied": summary.get("enrichment_diagnostics", {}).get(
+            "tag_genome_applied", False
+        ),
+        "imdb_applied": summary.get("enrichment_diagnostics", {}).get(
+            "imdb_applied", False
+        ),
+        "retrieval_text_changed": summary.get("enrichment_diagnostics", {}).get(
+            "retrieval_text_changed", False
+        ),
     }
 
 
@@ -225,22 +280,36 @@ def main() -> None:
 
     results: list[dict] = []
     summaries: dict[str, dict] = {}
-    profiles = {"compact": RANKER_PROFILES["compact"]} if args.skip_ranker_tuning else RANKER_PROFILES
+    profiles = (
+        {"compact": RANKER_PROFILES["compact"]}
+        if args.skip_ranker_tuning
+        else RANKER_PROFILES
+    )
 
     manifest_exists = (manifest_dir / "manifest.json").is_file()
     for profile_name, profile in profiles.items():
         run_name = f"core_{profile_name}"
         summary = _run_variant(
-            base, temp_dir, name=run_name, output_root=output_root, reports_root=reports_root,
-            manifest_dir=manifest_dir, manifest_mode="reuse" if manifest_exists else "create",
-            profile=profile, tag_path=None, imdb_path=None, args=args,
+            base,
+            temp_dir,
+            name=run_name,
+            output_root=output_root,
+            reports_root=reports_root,
+            manifest_dir=manifest_dir,
+            manifest_mode="reuse" if manifest_exists else "create",
+            profile=profile,
+            tag_path=None,
+            imdb_path=None,
+            args=args,
         )
         manifest_exists = True
         summaries[run_name] = summary
         results.append(_row(run_name, summary, profile=profile_name, variant="core"))
 
     table = pd.DataFrame(results)
-    champion_row = table.sort_values(["ndcg_at_10", "recall_efficiency_at_10"], ascending=False).iloc[0]
+    champion_row = table.sort_values(
+        ["ndcg_at_10", "recall_efficiency_at_10"], ascending=False
+    ).iloc[0]
     champion_profile = str(champion_row["ranker_profile"])
     champion_config = RANKER_PROFILES[champion_profile]
 
@@ -258,9 +327,17 @@ def main() -> None:
         if name == "combined_feature_only" and not (tag_path and imdb_path):
             continue
         summary = _run_variant(
-            base, temp_dir, name=name, output_root=output_root, reports_root=reports_root,
-            manifest_dir=manifest_dir, manifest_mode="reuse", profile=champion_config,
-            tag_path=tag_path, imdb_path=imdb_path, args=args,
+            base,
+            temp_dir,
+            name=name,
+            output_root=output_root,
+            reports_root=reports_root,
+            manifest_dir=manifest_dir,
+            manifest_mode="reuse",
+            profile=champion_config,
+            tag_path=tag_path,
+            imdb_path=imdb_path,
+            args=args,
         )
         summaries[name] = summary
         results.append(_row(name, summary, profile=champion_profile, variant=name))
@@ -271,39 +348,64 @@ def main() -> None:
 
     original_summary = summaries[f"core_{champion_profile}"]
     replay_summary = summaries["core_champion_replay"]
-    if original_summary.get("frozen_benchmark_manifest") != replay_summary.get("frozen_benchmark_manifest"):
+    if original_summary.get("frozen_benchmark_manifest") != replay_summary.get(
+        "frozen_benchmark_manifest"
+    ):
         raise AssertionError("Frozen core replay used a different benchmark manifest")
-    if original_summary.get("split_diagnostics") != replay_summary.get("split_diagnostics"):
+    if original_summary.get("split_diagnostics") != replay_summary.get(
+        "split_diagnostics"
+    ):
         raise AssertionError("Frozen core replay used different query-group splits")
 
     replay_atol = float(os.environ.get("FROZEN_REPLAY_ATOL", DEFAULT_REPLAY_ATOL))
     replay_rtol = float(os.environ.get("FROZEN_REPLAY_RTOL", DEFAULT_REPLAY_RTOL))
-    replay_check = _replay_diagnostics(core_original, core_replay, atol=replay_atol, rtol=replay_rtol)
-    replay_check.update({
-        "core_profile": champion_profile,
-        "original_run": f"core_{champion_profile}",
-        "replay_run": "core_champion_replay",
-        "original_ranker_backend": original_summary.get("metrics", {}).get("ranker_backend"),
-        "replay_ranker_backend": replay_summary.get("metrics", {}).get("ranker_backend"),
-        "manifest_equal": True,
-        "split_equal": True,
-    })
+    replay_check = _replay_diagnostics(
+        core_original, core_replay, atol=replay_atol, rtol=replay_rtol
+    )
+    replay_check.update(
+        {
+            "core_profile": champion_profile,
+            "original_run": f"core_{champion_profile}",
+            "replay_run": "core_champion_replay",
+            "original_ranker_backend": original_summary.get("metrics", {}).get(
+                "ranker_backend"
+            ),
+            "replay_ranker_backend": replay_summary.get("metrics", {}).get(
+                "ranker_backend"
+            ),
+            "manifest_equal": True,
+            "split_equal": True,
+        }
+    )
     (output_root / "frozen_replay_diagnostics.json").write_text(
         json.dumps(replay_check, indent=2, default=str), encoding="utf-8"
     )
     if not replay_check["passed"]:
-        failed = [name for name, detail in replay_check["metrics"].items() if not detail["passed"]]
+        failed = [
+            name
+            for name, detail in replay_check["metrics"].items()
+            if not detail["passed"]
+        ]
         raise AssertionError(
             "Frozen core replay exceeded GPU tolerance for: " + ", ".join(failed)
         )
-    max_delta = max(detail["absolute_delta"] for detail in replay_check["metrics"].values())
+    max_delta = max(
+        detail["absolute_delta"] for detail in replay_check["metrics"].values()
+    )
     print(
         f"[replay] frozen manifest/splits match; GPU metric replay within tolerance "
         f"(max_abs_delta={max_delta:.8g}, atol={replay_atol}, rtol={replay_rtol})",
         flush=True,
     )
 
-    slice_columns = ["genre_tag_ndcg", "mood_decade_ndcg", "personalized_ndcg", "similar_to_ndcg", "visual_query_ndcg"]
+    slice_columns = [
+        "genre_tag_ndcg",
+        "mood_decade_ndcg",
+        "personalized_ndcg",
+        "similar_to_ndcg",
+        "visual_query_ndcg",
+    ]
+
     def eligible(row: pd.Series) -> bool:
         if str(row["run_name"]) == "core_champion_replay":
             return True
@@ -330,12 +432,16 @@ def main() -> None:
     final.to_csv(output_root / "frozen_ablation_results.csv", index=False)
     champion = champion_row_final.to_dict()
     (output_root / "frozen_ablation_summary.json").write_text(
-        json.dumps({
-            "champion": champion,
-            "core_champion": core_replay.to_dict(),
-            "manifest_dir": str(manifest_dir.resolve()),
-            "promotion_rule": "no retrieval-text drift, positive ranker lift, no >10% slice regression, non-negative overall NDCG change",
-        }, indent=2, default=str),
+        json.dumps(
+            {
+                "champion": champion,
+                "core_champion": core_replay.to_dict(),
+                "manifest_dir": str(manifest_dir.resolve()),
+                "promotion_rule": "no retrieval-text drift, positive ranker lift, no >10% slice regression, non-negative overall NDCG change",
+            },
+            indent=2,
+            default=str,
+        ),
         encoding="utf-8",
     )
 
@@ -353,9 +459,13 @@ def main() -> None:
         "",
         "Candidate recall diagnostics are stored inside each variant artifact directory. If candidate recall is low, improve retrieval routing; if recall is high but NDCG is low, tune the ranker.",
     ]
-    (reports_root / "29_frozen_movielens_ablation.md").write_text("\n".join(md), encoding="utf-8")
+    (reports_root / "29_frozen_movielens_ablation.md").write_text(
+        "\n".join(md), encoding="utf-8"
+    )
     print(final.to_string(index=False))
-    print(f"Champion: {champion['run_name']} NDCG@10={float(champion['ndcg_at_10']):.6f}")
+    print(
+        f"Champion: {champion['run_name']} NDCG@10={float(champion['ndcg_at_10']):.6f}"
+    )
     print(f"Report: {(reports_root / '29_frozen_movielens_ablation.md').resolve()}")
 
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import warnings
+
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
@@ -43,12 +44,15 @@ class DenseRetriever:
             return self.device
         try:
             import torch
+
             return "cuda" if torch.cuda.is_available() else "cpu"
         except Exception:
             return "cpu"
 
     def _fit_fallback(self, docs: list[str]):
-        self.vectorizer = TfidfVectorizer(min_df=1, max_features=2048, ngram_range=(1, 2))
+        self.vectorizer = TfidfVectorizer(
+            min_df=1, max_features=2048, ngram_range=(1, 2)
+        )
         x = self.vectorizer.fit_transform(docs)
         self.embeddings = normalize(x).astype("float32").toarray()
         self.actual_backend = "tfidf-normalized-fallback"
@@ -77,11 +81,16 @@ class DenseRetriever:
                 return self
             except Exception as exc:
                 self.model = None
-                if self.backend == "sentence-transformers" and not self.allow_backend_fallback:
+                if (
+                    self.backend == "sentence-transformers"
+                    and not self.allow_backend_fallback
+                ):
                     raise DenseBackendError(
                         f"Requested SentenceTransformers backend failed to initialize: {exc}"
                     ) from exc
-                warnings.warn(f"SentenceTransformers failed; using labeled TF-IDF fallback: {exc}")
+                warnings.warn(
+                    f"SentenceTransformers failed; using labeled TF-IDF fallback: {exc}"
+                )
                 return self._fit_fallback(docs)
 
         if self.backend == "sentence-transformers" and not self.allow_backend_fallback:
@@ -103,7 +112,9 @@ class DenseRetriever:
                 normalize_embeddings=True,
             ).astype("float32")
         if self.vectorizer is None:
-            raise DenseBackendError("DenseRetriever must be fitted before encoding queries.")
+            raise DenseBackendError(
+                "DenseRetriever must be fitted before encoding queries."
+            )
         x = self.vectorizer.transform(queries)
         return normalize(x).astype("float32").toarray()
 

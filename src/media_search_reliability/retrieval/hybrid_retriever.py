@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import numpy as np
+
 from media_search_reliability.utils import normalize_scores
 
 
@@ -37,6 +38,11 @@ class HybridRetriever:
         doc_keys = np.asarray(docs)
         order = np.lexsort((doc_keys, -scores))[:top_k]
         return [
-            (docs[int(i)], float(scores[int(i)]), float(bm_vals[int(i)]), float(de_vals[int(i)]))
+            (
+                docs[int(i)],
+                float(scores[int(i)]),
+                float(bm_vals[int(i)]),
+                float(de_vals[int(i)]),
+            )
             for i in order
         ]

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
-from typing import Iterable
+from collections.abc import Iterable
 
 _GENRE_ALIASES = {
     "sci fi": "sci-fi",
@@ -49,7 +49,11 @@ def canonical_genre(value: object) -> str:
 def canonical_tag(value: object) -> str:
     text = normalize_text(value)
     text = _apply_alias(text, _TAG_ALIASES)
-    if text.endswith("s") and len(text) > 4 and text[:-1] in {"robot", "alien", "detective"}:
+    if (
+        text.endswith("s")
+        and len(text) > 4
+        and text[:-1] in {"robot", "alien", "detective"}
+    ):
         text = text[:-1]
     return text
 
@@ -64,7 +68,9 @@ def canonical_genre_phrase(value: object) -> str:
 def canonical_phrase(value: object) -> str:
     text = normalize_text(value)
     # Replace multi-word aliases before token-level matching.
-    for source, target in sorted({**_GENRE_ALIASES, **_TAG_ALIASES}.items(), key=lambda x: -len(x[0])):
+    for source, target in sorted(
+        {**_GENRE_ALIASES, **_TAG_ALIASES}.items(), key=lambda x: -len(x[0])
+    ):
         text = re.sub(rf"\b{re.escape(source)}\b", target.replace("-", " "), text)
     return re.sub(r"\s+", " ", text).strip()
 

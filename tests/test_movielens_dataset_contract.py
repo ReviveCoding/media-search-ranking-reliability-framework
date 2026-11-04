@@ -56,7 +56,9 @@ def test_load_modern_movielens_csv_with_tags(tmp_path: Path):
 
 
 def test_resolve_nested_movielens_directory(tmp_path: Path):
-    from media_search_reliability.data_ingestion.load_movielens import resolve_movielens_directory
+    from media_search_reliability.data_ingestion.load_movielens import (
+        resolve_movielens_directory,
+    )
 
     movies, ratings, tags = _frames()
     nested = tmp_path / "download" / "ml-20m"
@@ -67,7 +69,10 @@ def test_resolve_nested_movielens_directory(tmp_path: Path):
 
 def test_resolve_missing_movielens_directory_raises(tmp_path: Path):
     import pytest
-    from media_search_reliability.data_ingestion.load_movielens import resolve_movielens_directory
+
+    from media_search_reliability.data_ingestion.load_movielens import (
+        resolve_movielens_directory,
+    )
 
     with pytest.raises(FileNotFoundError):
         resolve_movielens_directory(tmp_path)

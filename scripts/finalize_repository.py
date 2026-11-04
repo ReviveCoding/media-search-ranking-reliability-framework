@@ -5,11 +5,10 @@ import csv
 import json
 import os
 import shutil
+from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
-
 
 README_START = "<!-- FINAL_RESULTS_START -->"
 README_END = "<!-- FINAL_RESULTS_END -->"
@@ -71,7 +70,9 @@ def load_release_data(repo: Path) -> ReleaseData:
     champion = summary.get("champion")
     baseline = summary.get("canonical_core_baseline")
     if not isinstance(champion, dict) or not isinstance(baseline, dict):
-        raise AssertionError("Summary must contain champion and canonical_core_baseline objects")
+        raise AssertionError(
+            "Summary must contain champion and canonical_core_baseline objects"
+        )
 
     return ReleaseData(
         summary=summary,
@@ -107,9 +108,7 @@ def validate_release_contract(
 
     strict_runs = set(data.summary.get("strict_contract_runs", []))
     if strict_runs != EXPECTED_STRICT_RUNS:
-        raise AssertionError(
-            f"Strict contract run set differs: {sorted(strict_runs)}"
-        )
+        raise AssertionError(f"Strict contract run set differs: {sorted(strict_runs)}")
 
     champion_ndcg = float(data.champion["ndcg_at_10"])
     baseline_ndcg = float(data.baseline["ndcg_at_10"])
@@ -159,7 +158,9 @@ def markdown_metric_table(data: ReleaseData) -> str:
 def readme_block(data: ReleaseData) -> str:
     champion = data.champion
     baseline = data.baseline
-    ndcg_change = pct_change(float(champion["ndcg_at_10"]), float(baseline["ndcg_at_10"]))
+    ndcg_change = pct_change(
+        float(champion["ndcg_at_10"]), float(baseline["ndcg_at_10"])
+    )
     return f"""{README_START}
 ## Final frozen benchmark result
 
@@ -381,7 +382,8 @@ def cleanup_candidates(repo: Path) -> tuple[list[Path], list[Path]]:
         if path.is_dir() and path.name in SAFE_CACHE_DIR_NAMES:
             dirs.append(path)
         elif path.is_file() and (
-            path.name in SAFE_CACHE_FILE_NAMES or path.suffix in SAFE_CACHE_FILE_SUFFIXES
+            path.name in SAFE_CACHE_FILE_NAMES
+            or path.suffix in SAFE_CACHE_FILE_SUFFIXES
         ):
             files.append(path)
     return sorted(set(dirs)), sorted(set(files))
@@ -396,7 +398,9 @@ def apply_cleanup(repo: Path, dirs: list[Path], files: list[Path]) -> None:
             path.unlink()
 
 
-def write_cleanup_report(repo: Path, dirs: list[Path], files: list[Path], applied: bool) -> Path:
+def write_cleanup_report(
+    repo: Path, dirs: list[Path], files: list[Path], applied: bool
+) -> Path:
     report_dir = repo / "reports" / "repository_finalization"
     report_dir.mkdir(parents=True, exist_ok=True)
     path = report_dir / "cleanup_candidates.txt"
