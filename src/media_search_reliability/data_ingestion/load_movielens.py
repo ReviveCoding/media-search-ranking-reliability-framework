@@ -1,11 +1,10 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import os
+from collections.abc import Iterable
 from pathlib import Path
-from typing import Iterable
 
 import pandas as pd
-
 
 _REQUIRED_LAYOUTS: tuple[tuple[str, str], ...] = (
     ("movies.dat", "ratings.dat"),
@@ -50,7 +49,10 @@ def _read_dat(path: Path, names: list[str], *, chunksize: int | None = None):
 
 
 def _has_supported_layout(path: Path) -> bool:
-    return any((path / movies_name).is_file() and (path / ratings_name).is_file() for movies_name, ratings_name in _REQUIRED_LAYOUTS)
+    return any(
+        (path / movies_name).is_file() and (path / ratings_name).is_file()
+        for movies_name, ratings_name in _REQUIRED_LAYOUTS
+    )
 
 
 def resolve_movielens_directory(raw_dir: str | Path, max_depth: int = 3) -> Path:
@@ -65,7 +67,9 @@ def resolve_movielens_directory(raw_dir: str | Path, max_depth: int = 3) -> Path
 
     candidates: list[Path] = []
     base_depth = len(base.parts)
-    for candidate in sorted((p for p in base.rglob("*") if p.is_dir()), key=lambda p: str(p).lower()):
+    for candidate in sorted(
+        (p for p in base.rglob("*") if p.is_dir()), key=lambda p: str(p).lower()
+    ):
         depth = len(candidate.parts) - base_depth
         if depth > max_depth:
             continue
@@ -83,7 +87,9 @@ def resolve_movielens_directory(raw_dir: str | Path, max_depth: int = 3) -> Path
     return candidates[0].resolve()
 
 
-def _select_users_in_order(values: pd.Series, selected: set[int], limit: int | None) -> None:
+def _select_users_in_order(
+    values: pd.Series, selected: set[int], limit: int | None
+) -> None:
     if limit is None or len(selected) >= limit:
         return
     for value in values.drop_duplicates().tolist():
@@ -112,7 +118,9 @@ def _read_ratings_chunked(
     else:
         iterator = pd.read_csv(
             path,
-            dtype=_dtype_subset(["userId", "movieId", "rating", "timestamp"], csv_names=True),
+            dtype=_dtype_subset(
+                ["userId", "movieId", "rating", "timestamp"], csv_names=True
+            ),
             chunksize=chunksize,
         )
 
@@ -147,7 +155,9 @@ def _read_tags(
     else:
         tags = pd.read_csv(
             path,
-            dtype=_dtype_subset(["userId", "movieId", "tag", "timestamp"], csv_names=True),
+            dtype=_dtype_subset(
+                ["userId", "movieId", "tag", "timestamp"], csv_names=True
+            ),
         ).rename(columns={"userId": "user_id", "movieId": "movie_id"})
     if allowed_movies is not None:
         tags = tags[tags["movie_id"].isin(allowed_movies)]
@@ -156,7 +166,9 @@ def _read_tags(
     return tags.reset_index(drop=True)
 
 
-def load_movielens(raw_dir: str | Path, max_movies: int | None = None, max_users: int | None = None):
+def load_movielens(
+    raw_dir: str | Path, max_movies: int | None = None, max_users: int | None = None
+):
     raw_dir = resolve_movielens_directory(raw_dir)
     chunksize = max(10_000, int(os.environ.get("MOVIELENS_READ_CHUNKSIZE", "500000")))
     dat_format = (raw_dir / "movies.dat").exists()
@@ -178,7 +190,9 @@ def load_movielens(raw_dir: str | Path, max_movies: int | None = None, max_users
     if max_movies:
         movies = movies.head(max_movies).copy()
     movies = movies.reset_index(drop=True)
-    allowed_movies = set(movies["movie_id"].astype(int).tolist()) if max_movies else None
+    allowed_movies = (
+        set(movies["movie_id"].astype(int).tolist()) if max_movies else None
+    )
 
     ratings, selected_users = _read_ratings_chunked(
         ratings_path,
@@ -197,8 +211,11 @@ def load_movielens(raw_dir: str | Path, max_movies: int | None = None, max_users
     for df in (movies, ratings, tags):
         for column in df.columns:
             if column.endswith("_id"):
-                df[column] = pd.to_numeric(df[column], errors="raise", downcast="integer")
+                df[column] = pd.to_numeric(
+                    df[column], errors="raise", downcast="integer"
+                )
     if "rating" in ratings:
-        ratings["rating"] = pd.to_numeric(ratings["rating"], errors="raise", downcast="float")
+        ratings["rating"] = pd.to_numeric(
+            ratings["rating"], errors="raise", downcast="float"
+        )
     return movies, ratings, tags
-

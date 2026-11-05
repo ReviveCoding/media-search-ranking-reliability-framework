@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable
 
 import numpy as np
 import pandas as pd
@@ -49,7 +49,12 @@ def build_leakage_groups(queries: pd.DataFrame) -> pd.Series:
     uf = _UnionFind(qids)
 
     if "anchor_movie_id" in queries:
-        for _, group in queries[pd.to_numeric(queries["anchor_movie_id"], errors="coerce").fillna(-1).astype(int) >= 0].groupby("anchor_movie_id"):
+        for _, group in queries[
+            pd.to_numeric(queries["anchor_movie_id"], errors="coerce")
+            .fillna(-1)
+            .astype(int)
+            >= 0
+        ].groupby("anchor_movie_id"):
             values = group["query_id"].astype(int).tolist()
             for value in values[1:]:
                 uf.union(values[0], value)
@@ -66,24 +71,37 @@ def build_leakage_groups(queries: pd.DataFrame) -> pd.Series:
     return queries["query_id"].astype(int).map(lambda qid: compact[roots[int(qid)]])
 
 
-def _split_score(frame: pd.DataFrame, holdout_index: np.ndarray, holdout_fraction: float) -> float:
+def _split_score(
+    frame: pd.DataFrame, holdout_index: np.ndarray, holdout_fraction: float
+) -> float:
     holdout = frame.iloc[holdout_index]
     size_error = abs(len(holdout) / max(1, len(frame)) - holdout_fraction)
     overall = frame["query_type"].astype(str).value_counts(normalize=True)
     observed = holdout["query_type"].astype(str).value_counts(normalize=True)
-    distribution_error = float(sum(abs(observed.get(label, 0.0) - overall.get(label, 0.0)) for label in overall.index))
+    distribution_error = float(
+        sum(
+            abs(observed.get(label, 0.0) - overall.get(label, 0.0))
+            for label in overall.index
+        )
+    )
     missing_types = int(sum(label not in observed.index for label in overall.index))
     return 2.0 * size_error + distribution_error + 5.0 * missing_types
 
 
-def _best_group_holdout(frame: pd.DataFrame, holdout_fraction: float, seed: int, n_candidates: int = 200) -> tuple[np.ndarray, np.ndarray]:
+def _best_group_holdout(
+    frame: pd.DataFrame, holdout_fraction: float, seed: int, n_candidates: int = 200
+) -> tuple[np.ndarray, np.ndarray]:
     if len(frame) < 3 or frame["split_group"].nunique() < 2:
         raise ValueError("Not enough independent groups for a group-aware split.")
-    splitter = GroupShuffleSplit(n_splits=n_candidates, test_size=holdout_fraction, random_state=seed)
+    splitter = GroupShuffleSplit(
+        n_splits=n_candidates, test_size=holdout_fraction, random_state=seed
+    )
     best = None
     best_score = float("inf")
     dummy = np.zeros(len(frame))
-    for train_index, holdout_index in splitter.split(dummy, frame["query_type"], groups=frame["split_group"]):
+    for train_index, holdout_index in splitter.split(
+        dummy, frame["query_type"], groups=frame["split_group"]
+    ):
         score = _split_score(frame, holdout_index, holdout_fraction)
         if score < best_score:
             best_score = score
@@ -129,22 +147,28 @@ def split_queries_group_aware(
             while n_test + n_val >= n and n_val > 0:
                 n_val -= 1
             test_ids.update(map(int, qids[:n_test]))
-            val_ids.update(map(int, qids[n_test:n_test + n_val]))
-            train_ids.update(map(int, qids[n_test + n_val:]))
+            val_ids.update(map(int, qids[n_test : n_test + n_val]))
+            train_ids.update(map(int, qids[n_test + n_val :]))
         strategy = "query-type-stratified-fallback"
 
     diagnostics = split_leakage_diagnostics(frame, train_ids, val_ids, test_ids)
     diagnostics["strategy"] = strategy
-    diagnostics["split_sizes"] = {"train": len(train_ids), "val": len(val_ids), "test": len(test_ids)}
+    diagnostics["split_sizes"] = {
+        "train": len(train_ids),
+        "val": len(val_ids),
+        "test": len(test_ids),
+    }
     return SplitResult(train_ids, val_ids, test_ids, diagnostics)
 
 
 def _pairwise_overlap(values_by_split: dict[str, set[int]]) -> dict[str, int]:
     names = list(values_by_split)
     return {
-        f"{left}_{right}": len(values_by_split[left].intersection(values_by_split[right]))
+        f"{left}_{right}": len(
+            values_by_split[left].intersection(values_by_split[right])
+        )
         for idx, left in enumerate(names)
-        for right in names[idx + 1:]
+        for right in names[idx + 1 :]
     }
 
 
@@ -161,15 +185,30 @@ def split_leakage_diagnostics(
     for name, ids in split_ids.items():
         subset = queries[queries["query_id"].astype(int).isin(ids)]
         if "anchor_movie_id" in subset:
-            anchors[name] = set(pd.to_numeric(subset["anchor_movie_id"], errors="coerce").dropna().astype(int)) - {-1}
+            anchors[name] = set(
+                pd.to_numeric(subset["anchor_movie_id"], errors="coerce")
+                .dropna()
+                .astype(int)
+            ) - {-1}
         else:
             anchors[name] = set()
         if {"query_type", "user_id"}.issubset(subset.columns):
             personalized = subset[subset["query_type"].astype(str) == "personalized"]
-            users[name] = set(pd.to_numeric(personalized["user_id"], errors="coerce").dropna().astype(int))
+            users[name] = set(
+                pd.to_numeric(personalized["user_id"], errors="coerce")
+                .dropna()
+                .astype(int)
+            )
         else:
             users[name] = set()
-        query_type_counts[name] = subset["query_type"].astype(str).value_counts().sort_index().astype(int).to_dict()
+        query_type_counts[name] = (
+            subset["query_type"]
+            .astype(str)
+            .value_counts()
+            .sort_index()
+            .astype(int)
+            .to_dict()
+        )
 
     anchor_overlap = _pairwise_overlap(anchors)
     personalized_user_overlap = _pairwise_overlap(users)
@@ -178,5 +217,7 @@ def split_leakage_diagnostics(
         "personalized_user_overlap": personalized_user_overlap,
         "query_type_counts": query_type_counts,
         "anchor_leakage_free": all(value == 0 for value in anchor_overlap.values()),
-        "personalized_user_leakage_free": all(value == 0 for value in personalized_user_overlap.values()),
+        "personalized_user_leakage_free": all(
+            value == 0 for value in personalized_user_overlap.values()
+        ),
     }

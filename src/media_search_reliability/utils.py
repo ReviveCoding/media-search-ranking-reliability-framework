@@ -5,14 +5,14 @@ import random
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import numpy as np
 import pandas as pd
 import yaml
 
 
-def load_yaml(path: str | Path) -> Dict[str, Any]:
+def load_yaml(path: str | Path) -> dict[str, Any]:
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
@@ -49,7 +49,7 @@ def timer_ms(fn, *args, **kwargs):
     return out, (time.perf_counter() - start) * 1000
 
 
-def write_json(path: str | Path, payload: Dict[str, Any]) -> None:
+def write_json(path: str | Path, payload: dict[str, Any]) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")

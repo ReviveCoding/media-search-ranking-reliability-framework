@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, asdict
 import re
-from typing import Iterable
+from collections.abc import Iterable
+from dataclasses import asdict, dataclass
 
 import pandas as pd
 
@@ -19,7 +19,10 @@ from media_search_reliability.text_normalization import (
 
 def _contains_phrase(text: str, phrase: str) -> bool:
     normalized_phrase = canonical_phrase(phrase)
-    return bool(normalized_phrase) and re.search(rf"\b{re.escape(normalized_phrase)}\b", text) is not None
+    return (
+        bool(normalized_phrase)
+        and re.search(rf"\b{re.escape(normalized_phrase)}\b", text) is not None
+    )
 
 
 @dataclass(frozen=True)
@@ -53,12 +56,25 @@ class QueryUnderstanding:
         for value in self.catalog.get("tag_text", pd.Series(dtype=str)).fillna(""):
             tags.update(split_pipe(value, kind="tag"))
         # Known lexical intents remain parseable even when a sparse catalog lacks the exact tag.
-        tags.update({"robot", "funny", "family", "space", "detective", "psychological", "mystery", "heist"})
+        tags.update(
+            {
+                "robot",
+                "funny",
+                "family",
+                "space",
+                "detective",
+                "psychological",
+                "mystery",
+                "heist",
+            }
+        )
         self.genre_display = genre_display
         self.genres = sorted(genre_display, key=lambda value: (-len(value), value))
         self.tags = sorted(tags, key=lambda value: (-len(value), value))
         self.title_lookup: dict[str, int] = {}
-        for row in self.catalog[["movie_id", "clean_title"]].dropna().itertuples(index=False):
+        for row in (
+            self.catalog[["movie_id", "clean_title"]].dropna().itertuples(index=False)
+        ):
             normalized = canonical_phrase(row.clean_title)
             if normalized and normalized not in self.title_lookup:
                 self.title_lookup[normalized] = int(row.movie_id)
@@ -73,13 +89,19 @@ class QueryUnderstanding:
         candidate = match.group(1).strip()
         if candidate in self.title_lookup:
             return self.title_lookup[candidate]
-        matches = [(title, movie_id) for title, movie_id in self.title_lookup.items() if title and title in candidate]
+        matches = [
+            (title, movie_id)
+            for title, movie_id in self.title_lookup.items()
+            if title and title in candidate
+        ]
         return max(matches, key=lambda pair: len(pair[0]))[1] if matches else -1
 
     def _anchor_metadata(self, anchor_movie_id: int) -> tuple[str, str]:
         if anchor_movie_id < 0:
             return "", ""
-        rows = self.catalog[self.catalog["movie_id"].astype(int) == int(anchor_movie_id)]
+        rows = self.catalog[
+            self.catalog["movie_id"].astype(int) == int(anchor_movie_id)
+        ]
         if rows.empty:
             return "", ""
         row = rows.iloc[0]
@@ -102,7 +124,9 @@ class QueryUnderstanding:
             query_type = "similar_to"
         elif "with scenes of" in normalized or "scenes of" in normalized:
             query_type = "visual_query"
-        elif normalized.startswith("recommend ") or "for a user who likes" in normalized:
+        elif (
+            normalized.startswith("recommend ") or "for a user who likes" in normalized
+        ):
             query_type = "personalized"
         else:
             query_type = "adhoc"
@@ -112,15 +136,24 @@ class QueryUnderstanding:
             (
                 genre
                 for genre in self.genres
-                if re.search(rf"\b{re.escape(genre.replace('-', ' '))}\b", genre_normalized)
+                if re.search(
+                    rf"\b{re.escape(genre.replace('-', ' '))}\b", genre_normalized
+                )
             ),
             "",
         )
         target_genre = self.genre_display.get(genre_key, genre_key)
-        mood_word = next((mood for mood in MOOD_TO_TAG if _contains_phrase(normalized, mood)), "")
+        mood_word = next(
+            (mood for mood in MOOD_TO_TAG if _contains_phrase(normalized, mood)), ""
+        )
         target_mood_tag = canonical_tag(MOOD_TO_TAG.get(mood_word, ""))
-        matched_tags = [canonical_tag(tag) for tag in self.tags if _contains_phrase(normalized, tag)]
-        target_tag = next((tag for tag in matched_tags if tag and tag != target_mood_tag), matched_tags[0] if matched_tags else "")
+        matched_tags = [
+            canonical_tag(tag) for tag in self.tags if _contains_phrase(normalized, tag)
+        ]
+        target_tag = next(
+            (tag for tag in matched_tags if tag and tag != target_mood_tag),
+            matched_tags[0] if matched_tags else "",
+        )
         decade_match = re.search(r"\b((?:19|20)\d0)s\b", normalized)
         target_decade = int(decade_match.group(1)) if decade_match else -1
 
@@ -139,11 +172,19 @@ class QueryUnderstanding:
         preferred_tags_text = canonical_join(preferred_tags or [], kind="tag")
 
         signals = [
-            bool(target_genre), bool(target_tag), bool(target_mood_tag),
-            target_decade >= 0, anchor_id >= 0,
-            bool(preferred_genres_text), bool(preferred_tags_text),
+            bool(target_genre),
+            bool(target_tag),
+            bool(target_mood_tag),
+            target_decade >= 0,
+            anchor_id >= 0,
+            bool(preferred_genres_text),
+            bool(preferred_tags_text),
         ]
-        confidence = min(1.0, 0.15 + 0.2 * sum(signals)) if query_type != "adhoc" else 0.1 * sum(signals)
+        confidence = (
+            min(1.0, 0.15 + 0.2 * sum(signals))
+            if query_type != "adhoc"
+            else 0.1 * sum(signals)
+        )
         return ParsedQueryIntent(
             query_type=query_type,
             anchor_movie_id=anchor_id,

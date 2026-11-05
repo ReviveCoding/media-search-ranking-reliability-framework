@@ -6,7 +6,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 README_START = "<!-- FINAL_RESULTS_START -->"
 README_END = "<!-- FINAL_RESULTS_END -->"
 

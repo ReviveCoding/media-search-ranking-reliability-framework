@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from collections import Counter
 import math
+from collections import Counter
+
 import numpy as np
+
 from media_search_reliability.utils import tokenize
 
 
@@ -18,7 +20,11 @@ class BM25Retriever:
     def fit(self, docs: list[str], doc_ids: list[int] | None = None):
         self.doc_tokens = [tokenize(d) for d in docs]
         self.doc_ids = doc_ids if doc_ids is not None else list(range(len(docs)))
-        self.avgdl = float(np.mean([len(t) for t in self.doc_tokens])) if self.doc_tokens else 0.0
+        self.avgdl = (
+            float(np.mean([len(t) for t in self.doc_tokens]))
+            if self.doc_tokens
+            else 0.0
+        )
         self.doc_freq = Counter()
         for toks in self.doc_tokens:
             for t in set(toks):
@@ -40,7 +46,9 @@ class BM25Retriever:
                     continue
                 df = self.doc_freq.get(term, 0)
                 idf = math.log(1 + (n_docs - df + 0.5) / (df + 0.5))
-                denom = tf[term] + self.k1 * (1 - self.b + self.b * dl / (self.avgdl or 1))
+                denom = tf[term] + self.k1 * (
+                    1 - self.b + self.b * dl / (self.avgdl or 1)
+                )
                 total += idf * (tf[term] * (self.k1 + 1)) / denom
             scores[i] = total
         return scores

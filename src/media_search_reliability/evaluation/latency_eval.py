@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import numpy as np
 import time
+
+import numpy as np
 
 
 def latency_summary(latencies_ms: list[float]) -> dict:

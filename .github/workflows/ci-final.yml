@@ -12,7 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        # Ubuntu 26.04 has no CPython 3.11.9 build in the setup-python catalog.
+        os: [ubuntu-24.04, windows-latest]
         python-version: ["3.11.9"]
 
     runs-on: ${{ matrix.os }}

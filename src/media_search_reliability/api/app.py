@@ -1,20 +1,25 @@
 from __future__ import annotations
 
-from pathlib import Path
 import json
 import os
-import time
 import threading
+import time
+from pathlib import Path
+
 import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from media_search_reliability.features.retrieval_features import build_candidate_features
+from media_search_reliability.features.retrieval_features import (
+    build_candidate_features,
+)
 from media_search_reliability.query_understanding import QueryUnderstanding
 from media_search_reliability.ranking.train_lambdarank import predict_ranker
 from media_search_reliability.retrieval.hybrid_retriever import HybridRetriever
-from media_search_reliability.retrieval.specialized_retriever import SpecializedCandidateGenerator
+from media_search_reliability.retrieval.specialized_retriever import (
+    SpecializedCandidateGenerator,
+)
 
 app = FastAPI(title="Media Search Reliability Framework")
 
@@ -31,7 +36,10 @@ _load_lock = threading.Lock()
 class SearchRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=500)
     top_k: int = Field(default=10, ge=1, le=50)
-    anchor_movie_id: int | None = Field(default=None, description="Optional item to exclude and use as context for similar-to searches.")
+    anchor_movie_id: int | None = Field(
+        default=None,
+        description="Optional item to exclude and use as context for similar-to searches.",
+    )
     preferred_genres: list[str] = Field(default_factory=list, max_length=20)
     preferred_tags: list[str] = Field(default_factory=list, max_length=20)
 
@@ -50,7 +58,10 @@ class BatchSearchRequest(BaseModel):
 
 
 def _artifact_readiness() -> dict:
-    required = [ARTIFACT_DIR / "retrieval_bundle.joblib", ARTIFACT_DIR / "ranker_bundle.joblib"]
+    required = [
+        ARTIFACT_DIR / "retrieval_bundle.joblib",
+        ARTIFACT_DIR / "ranker_bundle.joblib",
+    ]
     missing = [str(path) for path in required if not path.exists()]
     return {
         "ready": not missing,
@@ -61,12 +72,32 @@ def _artifact_readiness() -> dict:
 
 
 def _load():
-    global _bundle, _catalog, _ranker_bundle, _hybrid, _query_understanding, _specialized
+    global \
+        _bundle, \
+        _catalog, \
+        _ranker_bundle, \
+        _hybrid, \
+        _query_understanding, \
+        _specialized
     if _bundle is not None:
-        return (_bundle, _ranker_bundle, _catalog, _hybrid, _query_understanding, _specialized), 0.0
+        return (
+            _bundle,
+            _ranker_bundle,
+            _catalog,
+            _hybrid,
+            _query_understanding,
+            _specialized,
+        ), 0.0
     with _load_lock:
         if _bundle is not None:
-            return (_bundle, _ranker_bundle, _catalog, _hybrid, _query_understanding, _specialized), 0.0
+            return (
+                _bundle,
+                _ranker_bundle,
+                _catalog,
+                _hybrid,
+                _query_understanding,
+                _specialized,
+            ), 0.0
         load_start = time.perf_counter()
         bundle_path = ARTIFACT_DIR / "retrieval_bundle.joblib"
         ranker_path = ARTIFACT_DIR / "ranker_bundle.joblib"
@@ -79,17 +110,31 @@ def _load():
         _ranker_bundle = joblib.load(ranker_path)
         _catalog = _bundle.get("catalog")
         if _catalog is None:
-            catalog_path = Path(_bundle.get("catalog_path", "data/processed/media_catalog.csv"))
+            catalog_path = Path(
+                _bundle.get("catalog_path", "data/processed/media_catalog.csv")
+            )
             if not catalog_path.is_absolute():
                 catalog_path = ARTIFACT_DIR.parent / catalog_path
             _catalog = pd.read_csv(catalog_path)
-        _hybrid = HybridRetriever(_bundle["bm25"], _bundle["dense"], vector_index=_bundle.get("vector_index"))
+        _hybrid = HybridRetriever(
+            _bundle["bm25"], _bundle["dense"], vector_index=_bundle.get("vector_index")
+        )
         _query_understanding = QueryUnderstanding(_catalog)
         _specialized = SpecializedCandidateGenerator(
-            _catalog, _bundle["dense"], _bundle.get("vector_index"), user_context=_bundle.get("user_context")
+            _catalog,
+            _bundle["dense"],
+            _bundle.get("vector_index"),
+            user_context=_bundle.get("user_context"),
         )
         load_ms = (time.perf_counter() - load_start) * 1000
-        return (_bundle, _ranker_bundle, _catalog, _hybrid, _query_understanding, _specialized), load_ms
+        return (
+            _bundle,
+            _ranker_bundle,
+            _catalog,
+            _hybrid,
+            _query_understanding,
+            _specialized,
+        ), load_ms
 
 
 def _matched_signals(row) -> list[str]:
@@ -142,17 +187,24 @@ def _search_impl(
     )
 
     hybrid_rows = hybrid.search(query, top_k=max(top_k * 5, 50))
-    special_query = type("QueryRow", (), {
-        "query_type": parsed.query_type,
-        "anchor_movie_id": parsed.anchor_movie_id,
-        "user_id": 0,
-        "target_genre": parsed.target_genre,
-        "target_tag": parsed.target_tag,
-        "preferred_genres": parsed.preferred_genres,
-        "preferred_tags": parsed.preferred_tags,
-    })()
+    special_query = type(
+        "QueryRow",
+        (),
+        {
+            "query_type": parsed.query_type,
+            "anchor_movie_id": parsed.anchor_movie_id,
+            "user_id": 0,
+            "target_genre": parsed.target_genre,
+            "target_tag": parsed.target_tag,
+            "preferred_genres": parsed.preferred_genres,
+            "preferred_tags": parsed.preferred_tags,
+        },
+    )()
     special = specialized.retrieve(special_query, top_k=max(top_k * 5, 50))
-    hybrid_map = {int(movie_id): (float(hy), float(bm), float(de)) for movie_id, hy, bm, de in hybrid_rows}
+    hybrid_map = {
+        int(movie_id): (float(hy), float(bm), float(de))
+        for movie_id, hy, bm, de in hybrid_rows
+    }
     specialized_ids = []
     for score_map in special.values():
         specialized_ids.extend(int(mid) for mid in score_map)
@@ -164,12 +216,22 @@ def _search_impl(
         hy, bm, de = hybrid_map.get(int(movie_id), (0.0, 0.0, 0.0))
         a_dense = float(special.get("anchor_dense_score", {}).get(int(movie_id), 0.0))
         a_meta = float(special.get("anchor_metadata_score", {}).get(int(movie_id), 0.0))
-        p_dense = float(special.get("personalized_dense_score", {}).get(int(movie_id), 0.0))
-        rows.append({
-            "query_id": 0, "movie_id": movie_id, "hybrid_score": hy, "bm25_score": bm, "dense_score": de,
-            "anchor_dense_score": a_dense, "anchor_metadata_score": a_meta,
-            "personalized_dense_score": p_dense, "specialized_score": max(a_dense, a_meta, p_dense),
-        })
+        p_dense = float(
+            special.get("personalized_dense_score", {}).get(int(movie_id), 0.0)
+        )
+        rows.append(
+            {
+                "query_id": 0,
+                "movie_id": movie_id,
+                "hybrid_score": hy,
+                "bm25_score": bm,
+                "dense_score": de,
+                "anchor_dense_score": a_dense,
+                "anchor_metadata_score": a_meta,
+                "personalized_dense_score": p_dense,
+                "specialized_score": max(a_dense, a_meta, p_dense),
+            }
+        )
 
     if not rows:
         return {
@@ -184,31 +246,49 @@ def _search_impl(
         }
 
     candidates = pd.DataFrame(rows)
-    query_df = pd.DataFrame([{
-        "query_id": 0,
-        "query": query,
-        "query_type": parsed.query_type,
-        "anchor_movie_id": parsed.anchor_movie_id,
-        "user_id": 0,
-        "target_genre": parsed.target_genre,
-        "target_tag": parsed.target_tag,
-        "target_mood_tag": parsed.target_mood_tag,
-        "target_decade": parsed.target_decade,
-    }])
-    labels = pd.DataFrame(columns=["query_id", "movie_id", "label", "slice_long_tail", "slice_cold_start"])
-    user = pd.DataFrame([{
-        "user_id": 0,
-        "preferred_genres": parsed.preferred_genres,
-        "preferred_tags": parsed.preferred_tags,
-    }])
+    query_df = pd.DataFrame(
+        [
+            {
+                "query_id": 0,
+                "query": query,
+                "query_type": parsed.query_type,
+                "anchor_movie_id": parsed.anchor_movie_id,
+                "user_id": 0,
+                "target_genre": parsed.target_genre,
+                "target_tag": parsed.target_tag,
+                "target_mood_tag": parsed.target_mood_tag,
+                "target_decade": parsed.target_decade,
+            }
+        ]
+    )
+    labels = pd.DataFrame(
+        columns=["query_id", "movie_id", "label", "slice_long_tail", "slice_cold_start"]
+    )
+    user = pd.DataFrame(
+        [
+            {
+                "user_id": 0,
+                "preferred_genres": parsed.preferred_genres,
+                "preferred_tags": parsed.preferred_tags,
+            }
+        ]
+    )
     feats = build_candidate_features(candidates, query_df, catalog, labels, user)
     feats["score"] = predict_ranker(ranker_bundle["ranker"], feats)
     calibrator = ranker_bundle.get("calibrator")
-    feats["calibrated_score"] = calibrator.predict_proba(feats["score"]) if calibrator is not None else feats["score"]
+    feats["calibrated_score"] = (
+        calibrator.predict_proba(feats["score"])
+        if calibrator is not None
+        else feats["score"]
+    )
 
-    out = feats.sort_values(
-        ["score", "movie_id"], ascending=[False, True], kind="mergesort"
-    ).head(top_k).copy()
+    out = (
+        feats.sort_values(
+            ["score", "movie_id"], ascending=[False, True], kind="mergesort"
+        )
+        .head(top_k)
+        .copy()
+    )
     results = []
     for _, row in out.iterrows():
         calibrated = float(row.get("calibrated_score", 0.0))
@@ -217,17 +297,21 @@ def _search_impl(
             flags.append("LOW_CONFIDENCE")
         if int(row.get("long_tail_flag", 0)) == 1:
             flags.append("LONG_TAIL_ITEM")
-        results.append({
-            "movie_id": int(row["movie_id"]),
-            "title": str(row["clean_title"]),
-            "genres": str(row["genres"]),
-            "score": float(row["score"]),
-            "calibrated_score": calibrated,
-            "matched_signals": _matched_signals(row),
-            "review_flags": flags,
-        })
+        results.append(
+            {
+                "movie_id": int(row["movie_id"]),
+                "title": str(row["clean_title"]),
+                "genres": str(row["genres"]),
+                "score": float(row["score"]),
+                "calibrated_score": calibrated,
+                "matched_signals": _matched_signals(row),
+                "review_flags": flags,
+            }
+        )
 
-    top_review_flags = sorted({flag for result in results for flag in result["review_flags"]})
+    top_review_flags = sorted(
+        {flag for result in results for flag in result["review_flags"]}
+    )
     if parsed.parser_confidence < 0.2:
         top_review_flags.append("LOW_QUERY_INTENT_CONFIDENCE")
     return {
@@ -264,7 +348,13 @@ def ready():
 @app.post("/search")
 def search(req: SearchRequest):
     try:
-        return _search_impl(req.query, req.top_k, req.anchor_movie_id, req.preferred_genres, req.preferred_tags)
+        return _search_impl(
+            req.query,
+            req.top_k,
+            req.anchor_movie_id,
+            req.preferred_genres,
+            req.preferred_tags,
+        )
     except FileNotFoundError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
@@ -277,7 +367,13 @@ def batch_search(req: BatchSearchRequest):
     requests.extend(BatchSearchItem(query=query) for query in (req.queries or []))
     try:
         responses = [
-            _search_impl(item.query, req.top_k, item.anchor_movie_id, item.preferred_genres, item.preferred_tags)
+            _search_impl(
+                item.query,
+                req.top_k,
+                item.anchor_movie_id,
+                item.preferred_genres,
+                item.preferred_tags,
+            )
             for item in requests
         ]
     except FileNotFoundError as exc:

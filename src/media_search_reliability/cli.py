@@ -13,13 +13,17 @@ def _run_with_config(config: str | None, mode: str) -> dict:
     local_default = Path("configs/pipeline.yaml")
     if local_default.exists():
         return run_pipeline(local_default, mode=mode)
-    resource = resources.files("media_search_reliability.configs").joinpath("pipeline.yaml")
+    resource = resources.files("media_search_reliability.configs").joinpath(
+        "pipeline.yaml"
+    )
     with resources.as_file(resource) as packaged_config:
         return run_pipeline(packaged_config, mode=mode)
 
 
 def pipeline_main() -> None:
-    parser = argparse.ArgumentParser(description="Run the media search reliability pipeline.")
+    parser = argparse.ArgumentParser(
+        description="Run the media search reliability pipeline."
+    )
     parser.add_argument(
         "--config",
         default=None,
@@ -43,7 +47,9 @@ def download_main() -> None:
         sha256_file,
     )
 
-    parser = argparse.ArgumentParser(description="Download and safely extract a MovieLens dataset.")
+    parser = argparse.ArgumentParser(
+        description="Download and safely extract a MovieLens dataset."
+    )
     parser.add_argument("--variant", choices=URLS.keys(), default="1m")
     parser.add_argument("--out", default="data/raw/movielens")
     parser.add_argument("--sha256", default=None)
@@ -67,22 +73,33 @@ def download_main() -> None:
 
 def check_path_main() -> None:
     import json
-    from media_search_reliability.data_ingestion.load_movielens import resolve_movielens_directory
 
-    parser = argparse.ArgumentParser(description="Validate an external MovieLens directory.")
+    from media_search_reliability.data_ingestion.load_movielens import (
+        resolve_movielens_directory,
+    )
+
+    parser = argparse.ArgumentParser(
+        description="Validate an external MovieLens directory."
+    )
     parser.add_argument("path")
     parser.add_argument("--json-out", default=None)
     args = parser.parse_args()
     requested = Path(args.path).expanduser()
     resolved = resolve_movielens_directory(requested)
     layout = "dat" if (resolved / "movies.dat").exists() else "csv"
-    names = ["movies.dat", "ratings.dat", "tags.dat"] if layout == "dat" else ["movies.csv", "ratings.csv", "tags.csv"]
+    names = (
+        ["movies.dat", "ratings.dat", "tags.dat"]
+        if layout == "dat"
+        else ["movies.csv", "ratings.csv", "tags.csv"]
+    )
     files = {}
     for name in names:
         candidate = resolved / name
         files[name] = {
             "exists": candidate.exists(),
-            "size_mb": round(candidate.stat().st_size / (1024 * 1024), 3) if candidate.exists() else None,
+            "size_mb": round(candidate.stat().st_size / (1024 * 1024), 3)
+            if candidate.exists()
+            else None,
         }
     payload = {
         "requested_path": str(requested),
